@@ -5,4 +5,4 @@ export const drawerStyles = {
   color: 'white',
   padding: '4px',
   borderRadius: '8px',
-}
+};

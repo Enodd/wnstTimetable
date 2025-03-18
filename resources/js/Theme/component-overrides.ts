@@ -13,6 +13,7 @@ const componentOverrides: Components<
           radial-gradient(circle at calc(100vw - 200px) calc(100vh - 200px), #1270B0 0%, transparent 40%)
           `,
         backgroundRepeat: 'no-repeat',
+        minHeight: '100vh'
       },
       '*': { scrollbarColor: 'transparent' },
       '*::-webkit-scrollbar': {

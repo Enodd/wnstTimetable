@@ -1,5 +1,5 @@
 import Sidebar from '@/Layouts/Components/Sidebar';
-import { Box, Card, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
 interface MainLayoutProps {
@@ -29,9 +29,6 @@ const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return <>
     <Sidebar open={true} />
     <MainBody isOpen={true}>
-      <Card>
-        Hello test
-      </Card>
       {children}
     </MainBody>
   </>;

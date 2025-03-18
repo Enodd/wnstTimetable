@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Drawer, Stack, Tab, Tabs, Typography, useMediaQuery, useTheme } from '@mui/material';
+import dayjs from 'dayjs';
+import SidebarTab from '@/Layouts/Components/SidebarTab';
+import SidebarTabs from '@/Models/SidebarTabs';
 
 interface SidebarProps {
   open: boolean;
-}
-
-enum SidebarTabs {
-  Groups,
-  Teachers,
-  Classes
 }
 
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
@@ -22,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
     '&.Mui-selected': { color: theme.palette.primary.contrastText }
   };
 
-  const handleTabChange = (event: React.SyntheticEvent, value: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, value: number) => {
     setActiveTab(value);
   };
 
@@ -45,15 +42,22 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
         alignItems={'center'}
         height={'100%'}
         justifyContent={'space-between'}>
-        <Stack alignItems={'center'}
+        <Stack
+          alignItems={'center'}
           gap={0.5}>
-          <Typography textAlign={'center'}
+          <Typography
+            textAlign={'center'}
             variant='h3'>
             Wydział nauk ścisłych i&nbsp;technicznych
           </Typography>
           <Typography variant='h4'>Uniwersytet Śląski</Typography>
           <Typography variant='h5'>2024/2025</Typography>
           <Typography variant='body1'>semestr letni</Typography>
+          <Typography
+            fontWeight={'bold'}
+            variant='body1'>
+            {dayjs().format('DD.MM.YYYY')}
+          </Typography>
         </Stack>
         <Box flexGrow={5}>
           <Stack
@@ -80,6 +84,15 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
               />
             </Tabs>
           </Stack>
+          <SidebarTab
+            currentTab={activeTab}
+            value={SidebarTabs.Classes} />
+          <SidebarTab
+            currentTab={activeTab}
+            value={SidebarTabs.Teachers} />
+          <SidebarTab
+            currentTab={activeTab}
+            value={SidebarTabs.Groups} />
         </Box>
         <Stack alignItems={'center'}>
           <Typography>Obsługa rezerwacji</Typography>
