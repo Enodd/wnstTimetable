@@ -6,13 +6,20 @@ const typography = createTypography(palette, {
     color: '#ffffff',
     fontFamily: 'Mulish',
   },
-  h6: { fontSize: '0.875rem', fontWeight: 'bold' },
-  body1: { fontSize: '1rem' },
-  h5: { fontSize: '1.125rem', fontWeight: 'bold'   },
-  h4: { fontSize: '1.25rem', fontWeight: 'bold' },
-  h3: { fontSize: '1.5rem', fontWeight: 'bold' },
-  h2: { fontSize: '1.875rem', fontWeight: 'bold' },
-  h1: { fontSize: '2.25rem', fontWeight: 'bold' },
+  h1: {
+    fontSize: '30px',
+    fontWeight: 'bold',
+  },
+  h2: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+  },
+  h3: { fontWeight: 'bold', fontSize: '20px'  },
+  h4: { fontWeight: 'bold', fontSize: '18px'  },
+  h5: { fontWeight: 'bold', fontSize: '16px'  },
+  h6: { fontWeight: 'bold', fontSize: '14px'  },
+  body1: { fontSize: '16px' },
+  body2: { fontSize: '16px' },
 });
 
 export default typography;

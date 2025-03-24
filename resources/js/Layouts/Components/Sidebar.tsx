@@ -47,12 +47,12 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
           gap={0.5}>
           <Typography
             textAlign={'center'}
-            variant='h3'>
+            variant='h1'>
             Wydział nauk ścisłych i&nbsp;technicznych
           </Typography>
-          <Typography variant='h4'>Uniwersytet Śląski</Typography>
-          <Typography variant='h5'>2024/2025</Typography>
-          <Typography variant='body1'>semestr letni</Typography>
+          <Typography variant='h2'>Uniwersytet Śląski</Typography>
+          <Typography variant='h3'>2024/2025</Typography>
+          <Typography variant='h4'>semestr letni</Typography>
           <Typography
             fontWeight={'bold'}
             variant='body1'>
