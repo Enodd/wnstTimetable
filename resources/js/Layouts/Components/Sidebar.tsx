@@ -51,8 +51,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
             Wydział nauk ścisłych i&nbsp;technicznych
           </Typography>
           <Typography variant='h2'>Uniwersytet Śląski</Typography>
-          <Typography variant='h3'>2024/2025</Typography>
-          <Typography variant='h4'>semestr letni</Typography>
+          <Typography variant='h3'>semestr letni 2024/2025</Typography>
           <Typography
             fontWeight={'bold'}
             variant='body1'>
