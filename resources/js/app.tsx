@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { SidebarProvider } from '@/Providers/SidebarProvider';
 import '../css/app.css';
 import './bootstrap';
 
@@ -26,7 +27,9 @@ createInertiaApp({
       <QueryClientProvider client={client}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <App {...props} />
+          <SidebarProvider>
+            <App {...props} />
+          </SidebarProvider>
         </ThemeProvider>
       </QueryClientProvider>
     );

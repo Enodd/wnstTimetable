@@ -1,8 +1,6 @@
-export interface Group {
-  id: number;
-  name: string ;
+export interface GroupTree {
   idGroupTree: number;
-  semester: number;
-  shortcut: string;
-  nrStud: number;
+  name: string;
+  parent: number;
+  subGroups: GroupTree[];
 }

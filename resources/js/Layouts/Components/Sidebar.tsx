@@ -3,12 +3,14 @@ import { Box, Drawer, Stack, Tab, Tabs, Typography, useMediaQuery, useTheme } fr
 import dayjs from 'dayjs';
 import SidebarTab from '@/Layouts/Components/SidebarTab';
 import SidebarTabs from '@/Models/SidebarTabs';
+import { GroupsTabView } from '@/View/GroupsTabView';
 
 interface SidebarProps {
   open: boolean;
+  onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const [activeTab, setActiveTab] = useState<SidebarTabs>(SidebarTabs.Groups);
@@ -25,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
 
   return (
     <Drawer
-      open={props.open}
+      open={open}
       variant={isMdUp ? 'persistent' : 'temporary'}
       sx={{
         '& .MuiDrawer-paper': {
@@ -37,9 +39,11 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
           paddingY: theme.spacing(4),
         },
       }}
+      onClose={onClose}
     >
       <Stack
         alignItems={'center'}
+        flexBasis={'fit-content'}
         height={'100%'}
         justifyContent={'space-between'}>
         <Stack
@@ -58,47 +62,61 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
             {dayjs().format('DD.MM.YYYY')}
           </Typography>
         </Stack>
-        <Box flexGrow={5}>
-          <Stack
-            direction={'row'}>
-            <Tabs
-              indicatorColor='secondary'
-              value={activeTab}
-              onChange={handleTabChange}
-            >
-              <Tab
-                label='Grupy'
-                sx={tabStyles}
-                value={SidebarTabs.Groups}
-              />
-              <Tab
-                label={'Nauczyciele'}
-                sx={tabStyles}
-                value={SidebarTabs.Teachers}
-              />
-              <Tab
-                label='Sale'
-                sx={tabStyles}
-                value={SidebarTabs.Classes}
-              />
-            </Tabs>
-          </Stack>
+        <Stack
+          direction={'row'}
+          flexBasis={'fit-content'}>
+          <Tabs
+            indicatorColor='secondary'
+            value={activeTab}
+            onChange={handleTabChange}
+          >
+            <Tab
+              label='Grupy'
+              sx={tabStyles}
+              value={SidebarTabs.Groups}
+            />
+            <Tab
+              label={'Nauczyciele'}
+              sx={tabStyles}
+              value={SidebarTabs.Teachers}
+            />
+            <Tab
+              label='Sale'
+              sx={tabStyles}
+              value={SidebarTabs.Classes}
+            />
+          </Tabs>
+        </Stack>
+        <Box
+          height={'65vh'}
+          overflow={'scroll'}
+          paddingX={2}
+        >
           <SidebarTab
             currentTab={activeTab}
-            value={SidebarTabs.Classes} />
+            value={SidebarTabs.Classes}
+            view={<></>}
+          />
           <SidebarTab
             currentTab={activeTab}
-            value={SidebarTabs.Teachers} />
+            value={SidebarTabs.Teachers}
+            view={<></>}
+          />
           <SidebarTab
             currentTab={activeTab}
-            value={SidebarTabs.Groups} />
+            value={SidebarTabs.Groups}
+            view={<GroupsTabView />}
+          />
         </Box>
-        <Stack alignItems={'center'}>
+        <Stack
+          alignItems={'center'}
+          flexBasis={'fit-content'}>
           <Typography>Obsługa rezerwacji</Typography>
           <Typography>Info</Typography>
           <Typography>Pomoc</Typography>
           <Typography>Zaloguj się</Typography>
-          <Typography mt={4}
+          <Typography
+            mt={4}
             textAlign={'center'}>
             Ostatnia aktualizacja bazy: <br />{' '}
             {new Date().toLocaleDateString()}

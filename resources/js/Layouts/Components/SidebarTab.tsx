@@ -2,14 +2,20 @@ import SidebarTabs from '@/Models/SidebarTabs';
 import { Stack } from '@mui/material';
 import React from 'react';
 
-const SidebarTab: React.FC<{ value: SidebarTabs, currentTab: SidebarTabs }> = ({ value, currentTab }) => {
+const SidebarTab: React.FC<{
+  value: SidebarTabs,
+  currentTab: SidebarTabs,
+  view: React.ReactNode
+}> = ({ value, currentTab, view }) => {
+
   if (currentTab != value) {
     return <></>;
   }
 
-  // TODO: dodać odpowiednie komponenty w zależności od logiki na bazie danych
-  return <Stack>
-    <div>{value}</div>
+  return <Stack
+    gap={0.75}
+    my={2}>
+    {view}
   </Stack>;
 };
 

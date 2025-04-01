@@ -28,6 +28,7 @@ export default [
       '@stylistic/indent': ['error', 2],
       '@stylistic/jsx-newline': ['error', { 'prevent': true }],
       '@stylistic/jsx-max-props-per-line': ['error', { 'maximum': 1 }],
+      '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
       '@stylistic/jsx-sort-props': ['error', {
         'callbacksLast': true,
         'shorthandFirst': true,

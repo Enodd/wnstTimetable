@@ -1,4 +1,5 @@
 import { drawerStyles } from '@/Theme/common';
+import palette from '@/Theme/palette';
 import { Components, CssVarsTheme, Theme } from '@mui/material';
 
 const componentOverrides: Components<
@@ -18,8 +19,9 @@ const componentOverrides: Components<
       '*': { scrollbarColor: 'transparent' },
       '*::-webkit-scrollbar': {
         width: '.5rem',
-        background: '#0000',
+        background: 'rgba(0,0,0,0)',
       },
+      '*::-webkit-scrollbar-corner': { background: '#0000' },
       '*::-webkit-scrollbar-thumb': {
         borderRadius: theme.spacing(2),
         background: theme.palette.primary.light,
@@ -35,6 +37,23 @@ const componentOverrides: Components<
       },
     ],
   },
+  MuiAccordion: {
+    variants: [
+      {
+        props: { variant: 'elevation' },
+        style: {
+          padding: 1,
+          background: '#c1c1c111', 
+          borderWidth: '1px',
+          borderColor: palette.primary.dark,
+          borderRadius: 5,
+          backdropFilter: 'blur(4px)',
+          '&.Mui-expanded': { margin:0 }
+        }
+      },
+    ]
+  },
+  MuiAccordionDetails: { styleOverrides: { root: { paddingY: 0 }}}
 };
 
 export default componentOverrides;
