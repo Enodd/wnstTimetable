@@ -1,6 +1,6 @@
 import Sidebar from '@/Layouts/Components/Sidebar';
 import { Box, IconButton, Stack, styled, useMediaQuery, useTheme } from '@mui/material';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 
 interface MainLayoutProps {
@@ -29,7 +29,11 @@ export const MainBody = styled(Box)<MainLayoutProps>(({ theme, isOpen }) => ({
 const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const theme = useTheme();
   const isMdDown = useMediaQuery(theme.breakpoints.down('md'));
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(!isMdDown);
+
+  useEffect(() => {
+    setIsSidebarOpen(!isMdDown);
+  }, [isMdDown]);
 
   return <>
     {

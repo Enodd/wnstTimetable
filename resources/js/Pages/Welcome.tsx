@@ -19,7 +19,7 @@ const Welcome: React.FC = () => {
   return (
     <DefaultLayout>
       <div
-        className='flex flex-col gap-2'
+        className='flex flex-col gap-2 justify-center h-screen'
         dangerouslySetInnerHTML={{ __html: content }} />
     </DefaultLayout>
   );
