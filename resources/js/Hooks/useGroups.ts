@@ -9,15 +9,13 @@ export const useGroups = () => {
     queryFn: async () => {
       const res = await fetch(getRequestUrl('group_tree'));
       const parsed = await res.json();
-      console.log(parsed);
       return parsed;
-    } 
+    }
   });
   useEffect(() => {
     if (groupTreeData.data?.length == 0) {
       groupTreeData.refetch();
     }
-    console.log(groupTreeData.data);
   });
-  return groupTreeData; 
+  return groupTreeData;
 };

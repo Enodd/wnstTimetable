@@ -4,13 +4,14 @@ namespace App\Models;
 
 class Conductor
 {
-  private int $id;
-  private string $name;
-  private string $surname;
-  private string $shortcut;
-  private string $title;
-  private int $room;
-  private string $mail;
+  public int $id;
+  public string $name;
+  public string $surname;
+  public string $shortcut;
+  public string $title;
+  public int $room;
+  public string $mail;
+  public int $id_cond_tree;
 
   public function __construct(
     int $id,
@@ -20,6 +21,7 @@ class Conductor
     string $title,
     int $room,
     string $mail,
+    int $id_cond_tree
   ) {
     $this->id = $id;
     $this->name = $name;
@@ -28,33 +30,5 @@ class Conductor
     $this->title = $title;
     $this->room = $room;
     $this->mail = $mail;
-  }
-  public function getId()
-  {
-    return $this->id;
-  }
-  public function getName()
-  {
-    return $this->name;
-  }
-  public function getShortcut()
-  {
-    return $this->shortcut;
-  }
-  public function getSurname()
-  {
-    return $this->surname;
-  }
-  public function getTitle()
-  {
-    return $this->title;
-  }
-  public function getRoom()
-  {
-    return $this->room;
-  }
-  public function getMail()
-  {
-    return $this->mail;
   }
 }
