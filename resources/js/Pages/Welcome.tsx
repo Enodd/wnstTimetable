@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import DefaultLayout from '@/Layouts/DefaultLayout';
-import { useQuery } from '@tanstack/react-query';
-import { getRequestUrl } from '@/Helpers/apiHelper';
+import React, { useEffect, useState } from 'react';
 
 const Welcome: React.FC = () => {
   const [content, setContent] = useState<string>('');
-
-  const conductorsTreeData = useQuery<any[], Error>({
-    queryKey: ['conductors_tree'],
-    queryFn: async () => {
-      const res = await fetch(getRequestUrl('conductors_tree'));
-      const parsed = await res.json();
-      return parsed;
-    }
-  });
 
   const getContent = async () => {
     try {
@@ -29,13 +18,6 @@ const Welcome: React.FC = () => {
     getContent();
   }, []);
 
-  useEffect(() => {
-    if (conductorsTreeData.data?.length === 0) {
-      conductorsTreeData.refetch();
-    } else {
-      console.log(conductorsTreeData.data);
-    }
-  });
   return (
     <DefaultLayout>
       <div

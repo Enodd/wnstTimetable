@@ -13,7 +13,7 @@ export const useGroups = () => {
     }
   });
   useEffect(() => {
-    if (groupTreeData.data?.length == 0) {
+    if (groupTreeData.data?.length === 0) {
       groupTreeData.refetch();
     }
   });

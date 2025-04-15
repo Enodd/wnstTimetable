@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import SidebarTab from '@/Layouts/Components/SidebarTab';
 import SidebarTabs from '@/Models/SidebarTabs';
 import { GroupsTabView } from '@/View/GroupsTabView';
+import { ConductorsTabView } from '@/View/ConductorsTabView';
 
 interface SidebarProps {
   open: boolean;
@@ -100,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
           <SidebarTab
             currentTab={activeTab}
             value={SidebarTabs.Teachers}
-            view={<></>}
+            view={<ConductorsTabView />}
           />
           <SidebarTab
             currentTab={activeTab}

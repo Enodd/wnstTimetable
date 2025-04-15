@@ -54,7 +54,6 @@ class ConductorsTreeController extends Controller
         ];
       }
     }
-
     /**
      * This variable is nested structure of all conductors
      */
@@ -67,6 +66,29 @@ class ConductorsTreeController extends Controller
       }
     }
 
+    $this->sortConductors($finalConductors);
+
     return $finalConductors;
+  }
+
+  private function sortConductors(&$conductors): void
+  {
+    usort($conductors, function ($a, $b) {
+      return $a['name'] <=> $b['name'];
+    });
+
+    foreach ($conductors as &$conductor) {
+      usort($conductor['conductors'], function ($a, $b) {
+        return [$a['surname'], $a['name']] <=> [$b['surname'], $b['name']];
+      });
+
+      if (!empty($conductor['children'])) {
+        $this->sortConductors($conductor['children']);
+
+        usort($conductor['children'], function ($a, $b) {
+          return $a['name'] <=> $b['name'];
+        });
+      }
+    }
   }
 }
