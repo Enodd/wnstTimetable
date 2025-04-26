@@ -7,18 +7,15 @@ a {
 
 .landingPage__card {
   padding: 1rem;
-  border-radius: 20px;
   border: 2px solid;
-  background: #c1c1c122;
-  backdrop-filter: blur(4px);
+  background: #ffffff;
+  @apply rounded-md;
 }
 
 .landingPage__card--error {
   font-weight: bold;
   padding: 1rem;
-  border-radius: 20px;
   border: 2px solid;
-  background: #c1c1c122;
-  backdrop-filter: blur(4px);
-  @apply text-red-400 border-red-400 flex flex-col gap-2;
+  background: #fff;
+  @apply text-red-400 border-red-400 flex flex-col gap-2 rounded-md;
 }

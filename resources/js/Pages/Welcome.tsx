@@ -1,16 +1,16 @@
-import DefaultLayout from '@/Layouts/DefaultLayout';
-import React, { useEffect, useState } from 'react';
+import DefaultLayout from "@/Layouts/DefaultLayout";
+import React, { useEffect, useState } from "react";
 
 const Welcome: React.FC = () => {
-  const [content, setContent] = useState<string>('');
+  const [content, setContent] = useState<string>("");
 
   const getContent = async () => {
     try {
-      const data = await fetch('http://localhost:8000/api/landingPage');
+      const data = await fetch("http://localhost:8000/api/landingPage");
       setContent(await data.text());
     } catch (err) {
       console.error(err);
-      setContent('<p>Error occured</p>');
+      setContent("<p>Error occured</p>");
     }
   };
 
@@ -21,8 +21,9 @@ const Welcome: React.FC = () => {
   return (
     <DefaultLayout>
       <div
-        className='flex flex-col gap-2 justify-center h-screen'
-        dangerouslySetInnerHTML={{ __html: content }} />
+        className="flex flex-col gap-2 justify-center h-full"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </DefaultLayout>
   );
 };
