@@ -1,12 +1,6 @@
 import { drawerStyles } from "@/Theme/common";
+import palette from "@/Theme/palette";
 import { Components, CssVarsTheme, Theme } from "@mui/material";
-
-/*
- * background-color: #ffffff;
-opacity: 0.8;
-background-image:  linear-gradient(#007eff 1.7000000000000002px, transparent 1.7000000000000002px), linear-gradient(to right, #007eff 1.7000000000000002px, #ffffff 1.7000000000000002px);
-background-size: 34px 34px; 
- */
 
 const componentOverrides: Components<
   Omit<Theme, "components" | "palette"> & CssVarsTheme
@@ -38,22 +32,47 @@ const componentOverrides: Components<
       },
     ],
   },
-  // MuiAccordion: {
-  //   variants: [
-  //     {
-  //       props: { variant: "elevation" },
-  //       style: {
-  //         padding: 1,
-  //         borderWidth: "1px",
-  //         borderColor: palette.primary.dark,
-  //         borderRadius: 5,
-  //         backdropFilter: "blur(0px)",
-  //         "&.Mui-expanded": { margin: 0 },
-  //       },
-  //     },
-  //   ],
-  // },
-  // MuiAccordionDetails: { styleOverrides: { root: { paddingY: 0 } } },
+  MuiAccordion: {
+    variants: [
+      {
+        props: { variant: "outlined" },
+        style: {
+          padding: 0,
+          height: "fit-content",
+          borderWidth: 1,
+          borderColor: palette.primary.dark,
+          borderRadius: 5,
+          "&.Mui-expanded": { margin: 0 },
+        },
+      },
+    ],
+  },
+  MuiAccordionSummary: {
+    styleOverrides: {
+      root: {
+        "&.MuiAccordionSummary-root": {
+          minHeight: 0,
+          height: "fit-content",
+          span: {
+            "&.Mui-expanded": {
+              margin: "4px 0",
+            },
+          },
+        },
+        "*:not(svg)": {
+          margin: 2,
+          padding: 0,
+        },
+      },
+    },
+  },
+  MuiAccordionDetails: {
+    styleOverrides: {
+      root: {
+        padding: "4px",
+      },
+    },
+  },
 };
 
 export default componentOverrides;

@@ -28,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   const tabStyles = {
     fontWeight: "bold",
     color: "#c1c1c1",
-    "&.Mui-selected": { color: theme.palette.primary.contrastText },
+    "&.Mui-selected": { color: theme.palette.secondary.contrastText },
   };
 
   const handleTabChange = (_event: React.SyntheticEvent, value: number) => {
@@ -68,7 +68,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
         </Stack>
         <Stack direction={"row"} flexBasis={"fit-content"}>
           <Tabs
-            indicatorColor="secondary"
+            indicatorColor="primary"
             value={activeTab}
             onChange={handleTabChange}
           >
