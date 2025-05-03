@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
 
   return (
     <Drawer
-      open={true}
+      open={open}
       variant={isMdUp ? "persistent" : "temporary"}
       sx={{
         "& .MuiDrawer-paper": {
@@ -81,7 +81,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             <Tab label="Sale" sx={tabStyles} value={SidebarTabs.Classes} />
           </Tabs>
         </Stack>
-        <Box height={"65vh"} overflow={"scroll"} paddingX={2}>
+        <Box
+          height={"auto"}
+          minHeight={"150px"}
+          overflow={"scroll"}
+          paddingX={2}
+        >
           <SidebarTab
             currentTab={activeTab}
             value={SidebarTabs.Classes}
@@ -104,6 +109,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
           <Typography>Pomoc</Typography>
           <Typography>Zaloguj się</Typography>
           <Typography mt={4} textAlign={"center"}>
+            {/* TODO: zmienić new Date() na dane ostatniej aktualizacji bazy */}
             Ostatnia aktualizacja bazy: <br /> {new Date().toLocaleDateString()}
           </Typography>
         </Stack>

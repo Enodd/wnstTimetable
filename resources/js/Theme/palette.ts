@@ -27,4 +27,18 @@ const palette = createPalette({
   extraColors: { primaryDarkest: "#011635" },
 });
 
-export default palette;
+const darkPalette = createPalette({
+  secondary: {
+    light: "#A1C6EB",
+    main: "#3568CC",
+    dark: "#002E5A",
+  },
+  primary: {
+    light: "#ffffff",
+    main: "#f0f0f0",
+    dark: "#a0a0a0",
+  },
+  extraColors: { primaryDarkest: "#011635" },
+});
+
+export { darkPalette, palette };

@@ -54,7 +54,7 @@ const GroupDisplay: React.FC<{ group: GroupTree }> = ({ group }) => {
         </Stack>
       </AccordionSummary>
       <AccordionDetails>
-        <Stack gap={2} height={"fit-content"}>
+        <Stack gap={1} height={"fit-content"}>
           {group.subGroups.map((el) => (
             <GroupDisplay group={el} />
           ))}

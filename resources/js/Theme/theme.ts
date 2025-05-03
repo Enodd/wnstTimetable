@@ -1,6 +1,6 @@
 import { drawerStyles, siteBackground } from "@/Theme/common";
 import componentOverrides from "@/Theme/component-overrides";
-import palette from "@/Theme/palette";
+import { darkPalette, palette } from "@/Theme/palette";
 import typography from "@/Theme/typography";
 import { createTheme, CSSObject } from "@mui/material";
 
@@ -15,17 +15,21 @@ declare module "@mui/material/styles" {
   }
 }
 
-const theme = createTheme({
-  components: componentOverrides,
-  typography,
-  palette,
-  drawer: {
-    width: 350,
-    styles: drawerStyles,
-  },
-  site: {
-    background: siteBackground(palette),
-  },
-});
+const buildTheme = (darkMode: boolean = false) => {
+  const currentPalette = darkMode ? darkPalette : palette;
 
-export default theme;
+  return createTheme({
+    components: componentOverrides(currentPalette),
+    typography: typography(currentPalette),
+    palette: currentPalette,
+    drawer: {
+      width: 350,
+      styles: drawerStyles(currentPalette),
+    },
+    site: {
+      background: siteBackground(currentPalette),
+    },
+  });
+};
+
+export default buildTheme;

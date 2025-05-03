@@ -1,10 +1,9 @@
 import { drawerStyles } from "@/Theme/common";
-import palette from "@/Theme/palette";
-import { Components, CssVarsTheme, Theme } from "@mui/material";
+import { Components, CssVarsTheme, Palette, Theme } from "@mui/material";
 
-const componentOverrides: Components<
-  Omit<Theme, "components" | "palette"> & CssVarsTheme
-> = {
+const componentOverrides = (
+  palette: Palette
+): Components<Omit<Theme, "components" | "palette"> & CssVarsTheme> => ({
   MuiCssBaseline: {
     styleOverrides: (theme) => ({
       "html, body": {
@@ -41,6 +40,7 @@ const componentOverrides: Components<
           height: "fit-content",
           borderWidth: 1,
           borderColor: palette.primary.dark,
+          background: palette.secondary.light,
           borderRadius: 5,
           "&.Mui-expanded": { margin: 0 },
         },
@@ -73,6 +73,6 @@ const componentOverrides: Components<
       },
     },
   },
-};
+});
 
 export default componentOverrides;

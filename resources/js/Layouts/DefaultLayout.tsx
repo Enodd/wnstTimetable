@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 interface MainLayoutProps {
   isOpen: boolean;
@@ -58,8 +58,11 @@ const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
             zIndex: 1000,
           }}
         >
-          <IconButton color="secondary" onClick={() => setIsSidebarOpen(true)}>
-            <FaBars />
+          <IconButton
+            sx={{ color: "#000", background: "#fff" }}
+            onClick={() => setIsSidebarOpen(true)}
+          >
+            {isSidebarOpen ? <FaTimes /> : <FaBars />}
           </IconButton>
         </Stack>
       ) : undefined}

@@ -27,11 +27,19 @@ const ConductorsDisplay: React.FC<{ conductors: Conductors }> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+  const handleTabExpand = (e: React.SyntheticEvent) => {
+    e.currentTarget.parentElement?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <Accordion
       expanded={isExpanded}
       variant="outlined"
-      onChange={() => setIsExpanded((prev) => !prev)}
+      onChange={handleTabExpand}
     >
       <AccordionSummary
         sx={(theme) => ({
@@ -65,7 +73,7 @@ const ConductorsDisplay: React.FC<{ conductors: Conductors }> = ({
         </Stack>
       </AccordionSummary>
       <AccordionDetails>
-        <Stack gap={2}>
+        <Stack gap={1}>
           {conductors.children.length > 0 ? (
             conductors.children.map((el) => (
               <ConductorsDisplay conductors={el} key={conductors.name} />
