@@ -1,4 +1,4 @@
-import { Link, styled } from "@mui/material";
+import { Link, styled } from '@mui/material';
 
 export const SidebarLink = styled(Link)(function ({ theme }) {
   return {

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @source "../views";
 
 :root {
@@ -8,25 +9,46 @@
 
 .dark {
   --card-color: #fff;
-  --card-background: #a1c6eb;
+  --card-background: #30303c;
 }
 
 a {
   @apply text-blue-500;
 }
 
-.landingPage__card {
+.landingPage__container {
+  display: grid;
+  gap: .5rem;
+}
+
+@media (max-width: 900px) {
+  .landingPage__container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.landingPage__card, .landingPage__card--error {
   padding: 1rem;
-  border: 2px solid;
-  background: var(--card-background);
-  color: var(--card-color);
-  @apply rounded-md;
+  @apply text-white rounded-xl;
 }
 
 .landingPage__card--error {
-  font-weight: bold;
-  padding: 1rem;
-  border: 2px solid;
-  background: var(--card-background);
-  @apply text-red-400 border-red-400 flex flex-col gap-2 rounded-md;
+  @apply text-white bg-red-400 flex flex-col gap-2 rounded-xl;
+}
+
+.landingPage__card:nth-of-type(2) {
+  @apply bg-amber-500;
+}
+
+.landingPage__card:nth-of-type(3) {
+  @apply bg-green-600;
+}
+
+.landingPage__card:nth-of-type(4) {
+  @apply bg-blue-600;
+}
+
+.landingPage__card:nth-of-type(5) {
+  @apply bg-blue-900;
 }

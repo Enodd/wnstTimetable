@@ -1,28 +1,13 @@
-import DefaultLayout from "@/Layouts/DefaultLayout";
-import React, { useEffect, useState } from "react";
+import DefaultLayout from '@/Layouts/DefaultLayout';
+import React from 'react';
 
-const Welcome: React.FC = () => {
-  const [content, setContent] = useState<string>("");
-
-  const getContent = async () => {
-    try {
-      const data = await fetch("http://localhost:8000/api/landingPage");
-      setContent(await data.text());
-    } catch (err) {
-      console.error(err);
-      setContent("<p>Error occured</p>");
-    }
-  };
-
-  useEffect(() => {
-    getContent();
-  }, []);
+const Welcome: React.FC<{ mainPageContent: string }> = ({ mainPageContent }) => {
 
   return (
     <DefaultLayout>
       <div
-        className="flex flex-col gap-2 justify-center h-full"
-        dangerouslySetInnerHTML={{ __html: content }}
+        className='landingPage__container'
+        dangerouslySetInnerHTML={{ __html: mainPageContent }}
       />
     </DefaultLayout>
   );
