@@ -35,15 +35,4 @@ class ConductorTree
       "subGroups" => $this->subGroups
     ];
   }
-  /** @param ConductorTree[] $childrenGroup */
-  public function addChildrenGroup($childrenGroup): void
-  {
-    foreach ($childrenGroup as $cGroup) {
-      array_push($this->subGroups, $cGroup);
-    }
-  }
-
-  /** @param Conductor[] $conductors */
-  public function addConductors($conductors): void {
-  }
 }

@@ -25,7 +25,7 @@ createInertiaApp({
     const prefersDarkTheme = window.matchMedia(
       '(prefers-color-scheme: dark)'
     ).matches;
-    const appTheme = theme(!prefersDarkTheme);
+    const appTheme = theme(prefersDarkTheme);
 
     root.render(
       <QueryClientProvider client={client}>

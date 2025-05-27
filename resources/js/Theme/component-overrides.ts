@@ -23,46 +23,46 @@ const componentOverrides = (
     }),
   },
   MuiCard: { styleOverrides: { root: { ...drawerStyles }}},
-  // MuiButton: {
-  //   variants: [
-  //     {
-  //       props: { variant: 'outlined' },
-  //       style: { borderWidth: '2px' },
-  //     },
-  //   ],
-  // },
-  // MuiAccordion: {
-  //   variants: [
-  //     {
-  //       props: { variant: 'outlined' },
-  //       style: {
-  //         padding: 0,
-  //         height: 'fit-content',
-  //         borderWidth: 1,
-  //         borderColor: palette.primary.dark,
-  //         background: siteBackground(palette).backgroundColor,
-  //         borderRadius: 5,
-  //         '&.Mui-expanded': { margin: 0 },
-  //       },
-  //     },
-  //   ],
-  // },
-  // MuiAccordionSummary: {
-  //   styleOverrides: {
-  //     root: {
-  //       '&.MuiAccordionSummary-root': {
-  //         minHeight: 0,
-  //         height: 'fit-content',
-  //         span: { '&.Mui-expanded': { margin: '4px 0' }},
-  //       },
-  //       '*:not(svg)': {
-  //         margin: 2,
-  //         padding: 0,
-  //       },
-  //     },
-  //   },
-  // },
-  // MuiAccordionDetails: { styleOverrides: { root: { padding: '4px' }}},
+  MuiButton: {
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: { borderWidth: '2px' },
+      },
+    ],
+  },
+  MuiAccordion: {
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+          padding: 0,
+          height: 'fit-content',
+          borderWidth: 1,
+          borderColor: palette.primary.dark,
+          background: siteBackground(palette).backgroundColor,
+          borderRadius: 5,
+          '&.Mui-expanded': { margin: 0 },
+        },
+      },
+    ],
+  },
+  MuiAccordionSummary: {
+    styleOverrides: {
+      root: {
+        '&.MuiAccordionSummary-root': {
+          minHeight: 0,
+          height: 'fit-content',
+          span: { '&.Mui-expanded': { margin: '4px 0' }},
+        },
+        '*:not(svg)': {
+          margin: 2,
+          padding: 0,
+        },
+      },
+    },
+  },
+  MuiAccordionDetails: { styleOverrides: { root: { padding: '4px' }}},
 });
 
 export default componentOverrides;

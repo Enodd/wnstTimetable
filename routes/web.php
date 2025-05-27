@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
   $mainPageContent = MainpageController::index();
-  return Inertia::render('Welcome', [
+  return Inertia::render('LandingPage', [
     'canLogin' => Route::has('login'),
     'canRegister' => Route::has('register'),
     'mainPageContent' => $mainPageContent,

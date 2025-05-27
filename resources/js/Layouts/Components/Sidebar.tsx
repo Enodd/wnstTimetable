@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       variant={isMdUp ? 'persistent' : 'temporary'}
       sx={{
         '& .MuiDrawer-paper': {
-          // ...theme.drawer.styles,
+          ...theme.drawer.styles,
           marginRight: 0,
           maxWidth: '350px',
           height: '100vh',

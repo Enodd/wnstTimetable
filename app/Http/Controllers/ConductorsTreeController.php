@@ -27,9 +27,6 @@ class ConductorsTreeController extends Controller
       ->get();
 
     $conductors = [];
-    /**
-     * nesting all conductors within their corresponding parents
-     */
     foreach ($results as $row) {
       $id = $row->id_cond_tree;
 
@@ -54,9 +51,7 @@ class ConductorsTreeController extends Controller
         ];
       }
     }
-    /**
-     * This variable is nested structure of all conductors
-     */
+
     $finalConductors = [];
     foreach ($conductors as $id => &$conductor) {
       if ($conductor['parent'] && isset($conductors[$conductor['parent']])) {

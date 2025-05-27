@@ -1,8 +1,7 @@
 import DefaultLayout from '@/Layouts/DefaultLayout';
 import React from 'react';
 
-const Welcome: React.FC<{ mainPageContent: string }> = ({ mainPageContent }) => {
-
+const LandingPage: React.FC<{ mainPageContent: string }> = ({ mainPageContent }) => {
   return (
     <DefaultLayout>
       <div
@@ -13,4 +12,4 @@ const Welcome: React.FC<{ mainPageContent: string }> = ({ mainPageContent }) => 
   );
 };
 
-export default Welcome;
+export default LandingPage;

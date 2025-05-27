@@ -1,8 +1,8 @@
-import { useConductors } from "@/Hooks/useConductors";
-import { useGroups } from "@/Hooks/useGroups";
-import { Conductors } from "@/Models/Conductor";
-import { GroupTree } from "@/Models/Group";
-import React, { createContext, PropsWithChildren } from "react";
+import { useConductors } from '@/Hooks/useConductors';
+import { useGroups } from '@/Hooks/useGroups';
+import { Conductors } from '@/Models/Conductor';
+import { GroupTree } from '@/Models/Group';
+import React, { createContext, PropsWithChildren } from 'react';
 
 interface SidebarProps {
   groups: GroupTree[];
