@@ -6,5 +6,8 @@ export const SidebarLink = styled(Link)(function ({ theme }) {
     color: theme.palette.primary.main,
     borderWidth: 0.25,
     borderRadius: 4,
+    willChange: 'border-color',
+    transition: '100ms ease-out',
+    '&:hover': { borderColor: theme.palette.info.main }
   };
 });

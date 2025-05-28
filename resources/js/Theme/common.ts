@@ -2,8 +2,8 @@ import { CSSObject, Palette } from '@mui/material';
 
 export const drawerStyles = (palette: Palette): CSSObject => ({
   background: palette.background.default,
-  border: '2px solid',
-  color: '#000',
+  borderRight: '2px solid',
+  color: '#fff',
   padding: '4px',
 });
 

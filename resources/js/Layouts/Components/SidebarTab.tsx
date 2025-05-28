@@ -13,6 +13,7 @@ const SidebarTab: React.FC<{
   }
 
   return <Stack
+    flexGrow={1}
     gap={0.75}
     my={2}>
     {view}

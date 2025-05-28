@@ -17,7 +17,6 @@ export const useConductors = () => {
     if (conductorsTreeData.data?.length === 0) {
       conductorsTreeData.refetch();
     }
-    console.log(conductorsTreeData.data);
   });
 
   return conductorsTreeData;

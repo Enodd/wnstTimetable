@@ -38,11 +38,18 @@ const componentOverrides = (
         style: {
           padding: 0,
           height: 'fit-content',
-          borderWidth: 1,
+          borderWidth: 2,
           borderColor: palette.primary.dark,
           background: siteBackground(palette).backgroundColor,
           borderRadius: 5,
+          willChange: 'border-color',
+          transition: '100ms ease-out',
+          '* svg': { willChange: 'fill' },
           '&.Mui-expanded': { margin: 0 },
+          '&:hover': {
+            borderColor: palette.info.main,
+            '* svg': { fill: palette.info.main }
+          },
         },
       },
     ],

@@ -3,7 +3,7 @@ import SidebarTabs from '@/Models/SidebarTabs';
 import { ConductorsTabView } from '@/View/ConductorsTabView';
 import { GroupsTabView } from '@/View/GroupsTabView';
 import { Box,
-  Drawer,
+  Drawer, Link,
   Stack,
   Tab,
   Tabs,
@@ -12,6 +12,7 @@ import { Box,
   useTheme } from '@mui/material';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
+import { RoomsTabView } from '@/View/RoomsTabView.tsx';
 
 interface SidebarProps {
   open: boolean;
@@ -50,7 +51,6 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
     >
       <Stack
         alignItems={'center'}
-        flexBasis={'fit-content'}
         height={'100%'}
         justifyContent={'space-between'}
       >
@@ -93,7 +93,8 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
               value={SidebarTabs.Classes}/>
           </Tabs>
         </Stack>
-        <Box
+        <Stack
+          flexGrow={1}
           height={'auto'}
           minHeight={'150px'}
           overflow={'scroll'}
@@ -102,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
           <SidebarTab
             currentTab={activeTab}
             value={SidebarTabs.Classes}
-            view={<></>}
+            view={<RoomsTabView />}
           />
           <SidebarTab
             currentTab={activeTab}
@@ -114,14 +115,20 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             value={SidebarTabs.Groups}
             view={<GroupsTabView/>}
           />
-        </Box>
+        </Stack>
         <Stack
           alignItems={'center'}
           flexBasis={'fit-content'}>
           <Typography>Obsługa rezerwacji</Typography>
-          <Typography>Info</Typography>
-          <Typography>Pomoc</Typography>
-          <Typography>Zaloguj się</Typography>
+          <Link href={window.location.origin}>
+            Info
+          </Link>
+          <Link href={window.location.origin}>
+            Pomoc
+          </Link>
+          <Link href={window.location.origin}>
+            Zaloguj się
+          </Link>
           <Typography
             mt={4}
             textAlign={'center'}>
