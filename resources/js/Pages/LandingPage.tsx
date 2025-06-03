@@ -1,14 +1,15 @@
-import DefaultLayout from '@/Layouts/DefaultLayout';
+import { SearchBar } from '@/Components/SearchBar';
 import React from 'react';
 
 const LandingPage: React.FC<{ mainPageContent: string }> = ({ mainPageContent }) => {
   return (
-    <DefaultLayout>
+    <>
+      <SearchBar />
       <div
         className='landingPage__container'
         dangerouslySetInnerHTML={{ __html: mainPageContent }}
       />
-    </DefaultLayout>
+    </>
   );
 };
 

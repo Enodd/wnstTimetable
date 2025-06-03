@@ -2,17 +2,18 @@ import SidebarTab from '@/Layouts/Components/SidebarTab';
 import SidebarTabs from '@/Models/SidebarTabs';
 import { ConductorsTabView } from '@/View/ConductorsTabView';
 import { GroupsTabView } from '@/View/GroupsTabView';
-import { Box,
+import { RoomsTabView } from '@/View/RoomsTabView.tsx';
+import {
   Drawer, Link,
   Stack,
   Tab,
   Tabs,
   Typography,
   useMediaQuery,
-  useTheme } from '@mui/material';
+  useTheme
+} from '@mui/material';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { RoomsTabView } from '@/View/RoomsTabView.tsx';
 
 interface SidebarProps {
   open: boolean;
@@ -57,11 +58,13 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
         <Stack
           alignItems={'center'}
           gap={0.5}>
-          <Typography
+          <Link
+            href='/'
+            sx={{ textDecoration: 'none' }}
             textAlign={'center'}
             variant='h1'>
             Wydział nauk ścisłych i&nbsp;technicznych
-          </Typography>
+          </Link>
           <Typography variant='h2'>Uniwersytet Śląski</Typography>
           <Typography variant='h3'>semestr letni 2024/2025</Typography>
           <Typography

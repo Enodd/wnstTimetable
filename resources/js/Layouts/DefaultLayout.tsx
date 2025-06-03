@@ -1,18 +1,23 @@
 import Sidebar from '@/Layouts/Components/Sidebar';
-import { Box,
+import {
+  Box,
   IconButton,
   Stack,
   styled,
   useMediaQuery,
-  useTheme } from '@mui/material';
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+  useTheme
+} from '@mui/material';
+import React, {
+  PropsWithChildren, useEffect, useState
+} from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 interface MainLayoutProps {
   isOpen: boolean;
 }
 
-export const MainBody = styled(Box)<MainLayoutProps>(({ theme, isOpen }) => ({
+export const MainBody = styled(Stack)<MainLayoutProps>(({ theme, isOpen }) => ({
+  minHeight: `calc(100vh - ${theme.spacing(1)})`,
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -26,6 +31,7 @@ export const MainBody = styled(Box)<MainLayoutProps>(({ theme, isOpen }) => ({
       width: `calc(100% - ${theme.drawer.width}px - ${theme.spacing(2)})`,
       marginLeft: `calc(${theme.drawer.width}px + ${theme.spacing(2)})`,
       padding: theme.spacing(1) + ' ' + theme.spacing(2),
+      paddingLeft: 0
     },
     [theme.breakpoints.down('sm')]: { width: '100%' },
   }),
@@ -41,7 +47,7 @@ const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
   }, [isMdDown]);
 
   return (
-    <>
+    <Box>
       {isMdDown ? (
         <Stack
           direction={'row'}
@@ -68,7 +74,7 @@ const DefaultLayout: React.FC<PropsWithChildren> = ({ children }) => {
         open={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)} />
       <MainBody isOpen={isSidebarOpen}>{children}</MainBody>
-    </>
+    </Box>
   );
 };
 export default DefaultLayout;

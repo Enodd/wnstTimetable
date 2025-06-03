@@ -1,5 +1,7 @@
 import { drawerStyles, siteBackground } from '@/Theme/common';
-import { Components, CssVarsTheme, Palette, Theme } from '@mui/material';
+import {
+  Components, CssVarsTheme, Palette, Theme
+} from '@mui/material';
 
 const componentOverrides = (
   palette: Palette
@@ -31,6 +33,23 @@ const componentOverrides = (
       },
     ],
   },
+  MuiTextField: {
+    variants: [
+      {
+        props: { color: 'primary' },
+        style: {
+          '.MuiInputLabel-root': { color: 'white' },
+          '.MuiInputBase-root': { color: 'white' },
+          '.MuiOutlinedInput-root:hover': { '.MuiOutlinedInput-notchedOutline': { borderColor: '#fff' }},
+          '.MuiOutlinedInput-notchedOutline': {
+            color: 'white',
+            borderColor: '#fffa',
+            '&:hover': { borderColor: 'white' },
+          },
+        },
+      },
+    ],
+  },
   MuiAccordion: {
     variants: [
       {
@@ -48,7 +67,7 @@ const componentOverrides = (
           '&.Mui-expanded': { margin: 0 },
           '&:hover': {
             borderColor: palette.info.main,
-            '* svg': { fill: palette.info.main }
+            '* svg': { fill: palette.info.main },
           },
         },
       },

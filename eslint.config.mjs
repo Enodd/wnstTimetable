@@ -1,8 +1,8 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
 import stylistic from '@stylistic/eslint-plugin';
+import pluginReact from 'eslint-plugin-react';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -20,7 +20,7 @@ export default [
       '@stylistic/object-curly-newline': ['error', {
         'ObjectExpression': { 'multiline': true, minProperties: 3 },
         'ObjectPattern': { 'multiline': true, minProperties: 5 },
-        'ImportDeclaration': 'never',
+        'ImportDeclaration': { 'multiline': true, minProperties: 3 },
         'ExportDeclaration': { 'multiline': true, 'minProperties': 3 }
       }],
       '@stylistic/quotes': ['error', 'single'],

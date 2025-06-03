@@ -3,6 +3,7 @@ import { SidebarProvider } from '@/Providers/SidebarProvider';
 import '../css/app.css';
 import './bootstrap';
 
+import DefaultLayout from '@/Layouts/DefaultLayout';
 import theme from '@/Theme/theme';
 import { createInertiaApp } from '@inertiajs/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -32,7 +33,9 @@ createInertiaApp({
         <ThemeProvider theme={appTheme}>
           <CssBaseline/>
           <SidebarProvider>
-            <App {...props} />
+            <DefaultLayout>
+              <App {...props} />
+            </DefaultLayout>
           </SidebarProvider>
         </ThemeProvider>
       </QueryClientProvider>
