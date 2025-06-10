@@ -3,6 +3,7 @@
 //use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MainpageController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TimeTable;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +33,26 @@ Route::get('/search', function(\Illuminate\Http\Request $request) {
         'searchResults' => $resultsSlice,
         'totalPages' => ceil(count($results) / $pageSize),
         'page' => $pageNr,
+    ]);
+});
+
+Route::get('/conductors/{conductor}', function($conductor) {
+    $results = TimeTable::conductor($conductor);
+    return Inertia::render('Timetable', [
+        'data' => $results
+    ]);
+});
+Route::get('/rooms/{roomNr}', function($roomNr) {
+    $results = TimeTable::room($roomNr);
+    return Inertia::render('Timetable', [
+        'data' => $results
+    ]);
+});
+Route::get('/groups/{groupShortcut}', function($groupShortcut) {
+    $results = TimeTable::group($groupShortcut);
+
+    return Inertia::render('Timetable', [
+        'data' => $results
     ]);
 });
 

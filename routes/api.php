@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\MainpageController;
 use App\Http\Controllers\ConductorsTreeController;
 use App\Http\Controllers\GroupTreeController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\TimeTable;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->group(function () {
