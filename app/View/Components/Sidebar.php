@@ -1,0 +1,44 @@
+<?php
+
+namespace App\View\Components;
+
+use App\Models\ConductorTree;
+use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use \App\Models\GroupTree;
+
+class Sidebar extends Component
+{
+    public array $groups;
+    public array $conductors;
+    public array $rooms;
+
+    public function __construct()
+    {
+        $this->groups = [];
+        $this->conductors = $this->getConductors();
+        $this->rooms = [];
+    }
+
+    private function getGroups(): array {
+        return GroupTree::getAggregatedGroupTree();
+    }
+
+    private function getConductors(): array {
+        $trees = ConductorTree::with('conductors')->where('parent', ['='], 0)->get();
+
+        return $trees->map->toNestedArray()->toArray();
+    }
+
+    private function getRooms(): array {
+        return [];
+    }
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
+    {
+        return view('components.sidebar', ['conductors' => $this->conductors]);
+    }
+}

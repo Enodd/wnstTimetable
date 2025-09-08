@@ -2,42 +2,29 @@
 
 namespace App\Models;
 
-class GroupTree
+use App\Models\generated\GroupTree as BaseGroupTree;
+
+class GroupTree extends BaseGroupTree
 {
-  public int $idGroupTree;
-  public ?string $name;
-  public int $parent;
-  public ?array $subGroups;
-
-  public function __construct(
-    int $idGroupTree,
-    ?string $name,
-    int $parent,
-  ) {
-    $this->idGroupTree = $idGroupTree;
-    $this->name = $name;
-    $this->parent = $parent;
-    $this->subGroups = [];
-  }
-
-  /**
-   * Get group details as an associative array
-   * 
-   * @return array{id: int, name: ?string, idGroupTree: int, semester: int, shortcut: string, nrStud: int}
-   */
-  public function getValues(): array
-  {
-    return [
-      "name" => $this->name,
-      "idGroupTree" => $this->idGroupTree,
-      "subGroups" => $this->subGroups
-    ];
-  }
-  /** @param GroupTree[] $childrenGroup */
-  public function addChildrenGroup($childrenGroup)
-  {
-    foreach ($childrenGroup as $cGroup) {
-      array_push($this->subGroups, $cGroup);
+    static function getAggregatedGroupTree(): array {
+        $groups = self::all(['id_group_tree', 'name', 'parent'])->toArray();
+        $parentsArray = array_filter($groups, fn($group) => $group->parent == 0);
+        self::aggregateGroups($parentsArray, $groups);
+        return $parentsArray;
     }
-  }
+
+    /**
+     * @param $parentsArray BaseGroupTree[]
+     * @param $groupArray BaseGroupTree[]
+     */
+    static function aggregateGroups(array &$parentsArray, array $groupArray): void
+    {
+        foreach ($parentsArray as $parent) {
+            $subGroups = array_filter($groupArray, function($group) use ($parent) {
+                return $group->parent == $parent->id_group_tree;
+            });
+            self::aggregateGroups($subGroups, $groupArray);
+            $parent['children'] = $subGroups;
+        }
+    }
 }

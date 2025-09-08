@@ -1,54 +1,15 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@source "../views";
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
 
-:root {
-  --card-color: #000;
-  --card-background: #fff;
+@theme {
+    --font-sans: 'Mulish', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-.dark {
-  --card-color: #fff;
-  --card-background: #30303c;
-}
-
-a {
-  @apply text-blue-500;
-}
-
-.landingPage__container {
-  display: grid;
-  gap: .5rem;
-}
-
-@media (max-width: 900px) {
-  .landingPage__container {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.landingPage__card, .landingPage__card--error {
-  padding: 1rem;
-  @apply text-white rounded-xl;
-}
-
-.landingPage__card--error {
-  @apply text-white bg-red-400 flex flex-col gap-2 rounded-xl;
-}
-
-.landingPage__card:nth-of-type(2) {
-  @apply bg-amber-500;
-}
-
-.landingPage__card:nth-of-type(3) {
-  @apply bg-green-600;
-}
-
-.landingPage__card:nth-of-type(4) {
-  @apply bg-blue-600;
-}
-
-.landingPage__card:nth-of-type(5) {
-  @apply bg-blue-900;
+body {
+    @apply text-white;
 }
