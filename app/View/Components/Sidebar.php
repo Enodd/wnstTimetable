@@ -16,13 +16,15 @@ class Sidebar extends Component
 
     public function __construct()
     {
-        $this->groups = [];
+        $this->groups = $this->getGroups();
         $this->conductors = $this->getConductors();
         $this->rooms = [];
     }
 
     private function getGroups(): array {
-        return GroupTree::getAggregatedGroupTree();
+        $groups = GroupTree::with('groups')->where('parent', ['='], 0)->get();
+
+        return $groups->map->toNestedArray()->toArray();
     }
 
     private function getConductors(): array {

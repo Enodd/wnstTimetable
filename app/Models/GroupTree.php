@@ -3,28 +3,35 @@
 namespace App\Models;
 
 use App\Models\generated\GroupTree as BaseGroupTree;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GroupTree extends BaseGroupTree
 {
-    static function getAggregatedGroupTree(): array {
-        $groups = self::all(['id_group_tree', 'name', 'parent'])->toArray();
-        $parentsArray = array_filter($groups, fn($group) => $group->parent == 0);
-        self::aggregateGroups($parentsArray, $groups);
-        return $parentsArray;
+    public function groups(): HasMany
+    {
+        return $this->hasMany(Group::class, 'id_group_tree');
+    }
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(GroupTree::class, 'parent', 'id_group_tree');
+    }
+    public function children(): HasMany {
+        return $this->hasMany(GroupTree::class, 'parent', 'id_group_tree');
     }
 
-    /**
-     * @param $parentsArray BaseGroupTree[]
-     * @param $groupArray BaseGroupTree[]
-     */
-    static function aggregateGroups(array &$parentsArray, array $groupArray): void
+    public function toNestedArray(): array
     {
-        foreach ($parentsArray as $parent) {
-            $subGroups = array_filter($groupArray, function($group) use ($parent) {
-                return $group->parent == $parent->id_group_tree;
-            });
-            self::aggregateGroups($subGroups, $groupArray);
-            $parent['children'] = $subGroups;
-        }
+        return [
+            'id_group_tree' => $this->id_group_tree,
+            'name' => $this->name,
+            'parent' => $this->parent,
+            'groups' => $this->groups->map(fn($g) => [
+                'id' => $g->id,
+                'name' => $g->name,
+                'semester' => $g->semester,
+            ])->toArray(),
+            'children' => $this->children->map->toNestedArray()->toArray(),
+        ];
     }
 }
