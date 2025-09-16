@@ -1,13 +1,11 @@
-@props(['item'])
+@props(['title'])
 
 <div x-data="{ open: false }">
-    @if(isset($item['children']))
-        <!-- Accordion node -->
         <button
             @click="open = !open"
-            class="flex justify-between items-center w-full px-3 py-2 rounded hover:bg-gray-200"
+            class="flex justify-between items-center w-full px-3 py-2 rounded hover:bg-gray-200 hover:text-black"
         >
-            <span>{{ $item['title'] }}</span>
+            <span class="text-left">{{ $title }}</span>
             <svg :class="open ? 'rotate-90' : ''"
                  class="w-4 h-4 transition-transform"
                  xmlns="http://www.w3.org/2000/svg"
@@ -19,14 +17,6 @@
         </button>
 
         <div x-show="open" x-collapse class="pl-4 mt-1 space-y-1 border-l">
-            @foreach($item['children'] as $child)
-                <x-accordion :item="$child" />
-            @endforeach
+            {{ $slot }}
         </div>
-    @else
-        <a href="{{ isset($item['route']) ? route($item['route']) : '#' }}"
-           class="block px-3 py-2 rounded hover:bg-gray-200">
-            {{ $item['title'] }}
-        </a>
-    @endif
 </div>

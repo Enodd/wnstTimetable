@@ -25,7 +25,6 @@ class GroupTree extends BaseGroupTree
         return [
             'id_group_tree' => $this->id_group_tree,
             'name' => $this->name,
-            'parent' => $this->parent,
             'groups' => $this->groups->map(fn($g) => [
                 'id' => $g->id,
                 'name' => $g->name,

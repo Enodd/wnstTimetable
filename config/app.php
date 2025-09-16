@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'supported_languages' => explode(',', env('APP_supported_languages', 'pl,en')),
+
 ];

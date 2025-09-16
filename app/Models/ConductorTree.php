@@ -11,14 +11,14 @@ class ConductorTree extends CondTree
 {
 
     public function conductors(): HasMany {
-        return $this->hasMany(Conductor::class, 'id_cond_tree');
+        return $this->hasMany(Conductor::class, 'id_cond_tree')->orderBy('surname');
     }
 
     public function parent(): BelongsTo {
         return $this->belongsTo(ConductorTree::class, 'parent', 'id_cond_tree');
     }
     public function children(): HasMany {
-        return $this->hasMany(ConductorTree::class, 'parent', 'id_cond_tree');
+        return $this->hasMany(ConductorTree::class, 'parent', 'id_cond_tree')->orderBy('name');
     }
 
     public function toNestedArray(): array
@@ -26,7 +26,6 @@ class ConductorTree extends CondTree
         return [
             'id_cond_tree' => $this->id_cond_tree,
             'name' => $this->name,
-            'parent' => $this->parent,
             'conductors' => $this->conductors->map(fn($c) => [
                 'id' => $c->id,
                 'name' => $c->name,
