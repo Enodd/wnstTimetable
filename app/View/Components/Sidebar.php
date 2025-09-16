@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Models\ConductorTree;
+use App\Models\RoomTree;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -18,7 +19,7 @@ class Sidebar extends Component
     {
         $this->groups = $this->getGroups();
         $this->conductors = $this->getConductors();
-        $this->rooms = [];
+        $this->rooms = $this->getRooms();
     }
 
     private function getGroups(): array {
@@ -34,7 +35,8 @@ class Sidebar extends Component
     }
 
     private function getRooms(): array {
-        return [];
+        $rooms = RoomTree::with('rooms')->where('parent', ['='], 0)->get();
+        return $rooms->map->toNestedArray()->toArray();
     }
     /**
      * Get the view / contents that represent the component.
