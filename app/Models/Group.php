@@ -10,4 +10,9 @@ class Group extends generated\Group
     {
         return $this->belongsTo(ConductorTree::class, 'id_group_tree');
     }
+
+    public function getDescription(): string
+    {
+        return $this->shortcut;
+    }
 }

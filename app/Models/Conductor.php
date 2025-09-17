@@ -10,4 +10,9 @@ class Conductor extends generated\Conductor
     {
         return $this->belongsTo(ConductorTree::class, 'id_cond_tree');
     }
+
+    public function getDescription(): string
+    {
+        return "$this->title $this->surname $this->name";
+    }
 }

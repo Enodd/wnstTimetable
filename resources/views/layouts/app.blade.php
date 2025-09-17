@@ -14,9 +14,9 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
     </head>
-    <body class="bg-indigo-950 flex">
+    <body class="bg-blue-950 flex">
         <x-sidebar></x-sidebar>
-        <main>
+        <main class="w-full p-4 max-h-full overflow-y-scroll">
             @yield('content')
         </main>
     </body>

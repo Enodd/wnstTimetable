@@ -1,10 +1,8 @@
 <?php
 
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingPageController;
 
-Route::middleware(App\Http\Middleware\SetLocale::class)->group(function () {
-    Route::group(['prefix' => '{locale}', 'where' => ['locale' => implode('|', config('app.supported_languages'))]], function () {
-        Route::get('/', fn() => view('welcome'));
-    });
-    Route::get('/', fn() => null);
-});
+Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/search', [SearchController::class, 'index']);

@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\generated\GroupTree as BaseGroupTree;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GroupTree extends BaseGroupTree
 {
@@ -12,11 +12,14 @@ class GroupTree extends BaseGroupTree
     {
         return $this->hasMany(Group::class, 'id_group_tree');
     }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(GroupTree::class, 'parent', 'id_group_tree');
     }
-    public function children(): HasMany {
+
+    public function children(): HasMany
+    {
         return $this->hasMany(GroupTree::class, 'parent', 'id_group_tree');
     }
 
@@ -27,8 +30,9 @@ class GroupTree extends BaseGroupTree
             'name' => $this->name,
             'groups' => $this->groups->map(fn($g) => [
                 'id' => $g->id,
-                'name' => $g->name,
+                'shortcut' => $g->shortcut,
                 'semester' => $g->semester,
+                'description' => $g->getDescription(),
             ])->toArray(),
             'children' => $this->children->map->toNestedArray()->toArray(),
         ];

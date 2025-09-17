@@ -10,4 +10,8 @@ class Room extends generated\Room
     {
         return $this->belongsTo(RoomTree::class, 'id_room_tree');
     }
+    public function getDescription(): string
+    {
+        return $this->nr_room;
+    }
 }

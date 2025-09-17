@@ -27,6 +27,7 @@ class RoomTree extends generated\RoomTree
             'rooms' => $this->rooms->map(fn($room) => [
                 'id' => $room->id,
                 'nr_room' => $room->nr_room,
+                'description' => $room->getDescription(),
             ])->toArray(),
             'children' => $this->children->map->toNestedArray()->toArray()
         ];
