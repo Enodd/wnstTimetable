@@ -12,7 +12,7 @@
     <nav class="flex flex-col h-full">
         <a href="/" class="decoration-none mb-2">
             <div class="w-[350px] aspect-[295/206]">
-                <img src="us_logo_white.png" alt="logo uniwersytetu śląskiego" width="90%" class="m-auto"/>
+                <img src="/us_logo_white.png" alt="logo uniwersytetu śląskiego" width="90%" class="m-auto"/>
             </div>
             <h1 class="text-2xl text-center">
                 {!! 'Wydział nauk ścisłych i&nbsp;technicznych' !!}
