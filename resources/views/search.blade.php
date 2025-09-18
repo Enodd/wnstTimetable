@@ -1,4 +1,4 @@
-@props(['results'])
+@props(['results', 'search'])
 @extends('layouts.app')
 @php
     $current = $results->currentPage();
@@ -16,13 +16,13 @@
 
 @section('content')
     <div class="flex flex-col items-center w-auto mx-4 p-4 gap-2 border border-blue-100 rounded-lg">
-        <p class="font-bold text-2xl mb-4">Results:</p>
+        <p class="font-bold text-2xl mb-4">Wyniki wyszukiwania dla "{{$search}}":</p>
         <div class="w-full md:max-w-md flex flex-col gap-1">
             @foreach($results as $result)
-                <p>
+                <a href="{{$result['url']}}" class="hover:underline">
                     {{ $loop->iteration + ($results->perPage() * ($current - 1)) . '. ' }}
-                    {{ $result }}
-                </p>
+                    {{ $result['value'] }}
+                </a>
             @endforeach
         </div>
         <div class="flex flex-col items-center">

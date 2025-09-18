@@ -9,4 +9,6 @@ Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/search', [SearchController::class, 'index']);
 Route::prefix('timetable')->group(function () {
     Route::get('/groups/{groupId}', [TimetableController::class, 'groups']);
+    Route::get('/conductors/{conductorId}', [TimetableController::class, 'conductors']);
+    Route::get('/rooms/{roomNr}', [TimetableController::class, 'rooms']);
 });

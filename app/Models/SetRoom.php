@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class SetCond extends generated\SetCond
+class SetRoom extends generated\SetRoom
 {
-    public function conductor(): BelongsTo
+    public function room(): BelongsTo
     {
-        return $this->belongsTo(Conductor::class, 'id_cond');
+        return $this->belongsTo(Room::class, 'id_room');
     }
 
     public function course(): HasOne

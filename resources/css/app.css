@@ -15,6 +15,13 @@ body {
     @apply text-white;
 }
 
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 @supports (scrollbar-width: thin) and (not (-webkit-appearance: none)) {
     * {
         scrollbar-width: thin;

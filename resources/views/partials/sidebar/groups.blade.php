@@ -10,7 +10,9 @@
         @if(count($group['groups']) > 0)
             @foreach($group['groups'] as $grp)
                 <div class="w-full px-3 py-2 rounded text-white">
-                    {{ $grp['description'] }}
+                    <a href="{{'/timetable/groups/' . $grp['id']}}">
+                        {{ $grp['description'] }}
+                    </a>
                 </div>
             @endforeach
         @endif

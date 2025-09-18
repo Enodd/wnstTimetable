@@ -10,7 +10,9 @@
         @if(count($room['rooms']) > 0)
             @foreach($room['rooms'] as $rm)
                 <div class="w-full px-3 py-2 rounded">
-                    {{ $rm['description'] }}
+                    <a href="{{'/timetable/rooms/' . $rm['nr_room']}}">
+                        {{ $rm['description'] }}
+                    </a>
                 </div>
             @endforeach
         @endif

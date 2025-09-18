@@ -23,7 +23,10 @@ class SearchController extends Controller
             $groups = Group::where(DB::raw('LOWER(name)'), 'like', '%' . $search . '%')
                 ->orderBy('name')
                 ->get()
-                ->map(fn($group) => $group->getDescription())
+                ->map(fn($group) => [
+                    'url' => 'timetable/groups/' . $group->id,
+                    'value' => $group->getDescription()
+                ])
                 ->toArray();
             $results = $results->merge($groups);
         }
@@ -32,7 +35,10 @@ class SearchController extends Controller
                 ->orWhere(DB::raw('LOWER(surname)'), 'like', '%' . $search . '%')
                 ->orderBy('surname')
                 ->get()
-                ->map(fn($conductor) => $conductor->getDescription())
+                ->map(fn($conductor) => [
+                    'url' => 'timetable/conductors/' . $conductor->id,
+                    'value' => $conductor->getDescription()
+                ])
                 ->toArray();
             $results = $results->merge($conductors);
         }
@@ -40,7 +46,10 @@ class SearchController extends Controller
             $rooms = Room::where(DB::raw('LOWER(nr_room)'), 'like', '%' . $search . '%')
                 ->orderBy('nr_room')
                 ->get()
-                ->map(fn($room) => $room->getDescription())
+                ->map(fn($room) => [
+                    'url' => 'timetable/rooms/' . $room->nr_room,
+                    'value' => $room->getDescription()
+                ])
                 ->toArray();
             $results = $results->merge($rooms);
         }
@@ -68,6 +77,6 @@ class SearchController extends Controller
             ]
         );
 
-        return view('search', ['results' => $paginator]);
+        return view('search', ['results' => $paginator, 'search' => $search]);
     }
 }

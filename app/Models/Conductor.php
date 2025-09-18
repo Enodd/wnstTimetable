@@ -11,8 +11,18 @@ class Conductor extends generated\Conductor
         return $this->belongsTo(ConductorTree::class, 'id_cond_tree');
     }
 
+    public function setCond()
+    {
+        return $this->hasMany(SetCond::class, 'id_cond');
+    }
+
     public function getDescription(): string
     {
         return "$this->title $this->surname $this->name";
+    }
+
+    public function getFullTitle()
+    {
+        return "$this->title $this->name $this->surname";
     }
 }

@@ -10,7 +10,7 @@ class GroupTree extends BaseGroupTree
 {
     public function groups(): HasMany
     {
-        return $this->hasMany(Group::class, 'id_group_tree');
+        return $this->hasMany(Group::class, 'id_group_tree')->orderBy('shortcut');
     }
 
     public function parent(): BelongsTo
@@ -20,7 +20,7 @@ class GroupTree extends BaseGroupTree
 
     public function children(): HasMany
     {
-        return $this->hasMany(GroupTree::class, 'parent', 'id_group_tree');
+        return $this->hasMany(GroupTree::class, 'parent', 'id_group_tree')->orderBy('name');
     }
 
     public function toNestedArray(): array
