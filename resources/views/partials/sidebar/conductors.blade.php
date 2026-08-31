@@ -9,7 +9,7 @@
         @endif
         @if(count($conductor['conductors']) > 0)
             @foreach($conductor['conductors'] as $cond)
-                <div class="w-full px-3 py-2 rounded">
+                <div class="sidebar-tree-item">
                     <a href="{{'/timetable/conductors/' . $cond['id']}}">
                         {{ $cond['description'] }}
                     </a>

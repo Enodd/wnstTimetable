@@ -5,50 +5,83 @@ namespace App\Http\Controllers;
 use App\Models\Conductor;
 use App\Models\Group;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $search = strtolower($request->input('search', ''));
-        $shouldFetchGroups = $request->boolean('groups');
-        $shouldFetchConductors = $request->boolean('conductors');
-        $shouldFetchRooms = $request->boolean('rooms');
+        $search = trim((string)$request->input('search', ''));
+        $searchPattern = '%' . $search . '%';
+        $hasTypeFilters = $request->hasAny(['groups', 'conductors', 'rooms']);
+        $shouldFetchGroups = !$hasTypeFilters || $request->boolean('groups');
+        $shouldFetchConductors = !$hasTypeFilters || $request->boolean('conductors');
+        $shouldFetchRooms = !$hasTypeFilters || $request->boolean('rooms');
         $results = collect();
 
         if ($shouldFetchGroups) {
-            $groups = Group::where(DB::raw('LOWER(name)'), 'like', '%' . $search . '%')
+            $groups = Group::query()
+                ->where(function (Builder $query) use ($searchPattern) {
+                    $query
+                        ->whereLike('name', $searchPattern, caseSensitive: false)
+                        ->orWhereLike('shortcut', $searchPattern, caseSensitive: false)
+                        ->orWhereHas('tree', fn(Builder $tree) => $this->whereTreeMatches(
+                            $tree,
+                            $searchPattern
+                        ));
+                })
                 ->orderBy('name')
                 ->get()
                 ->map(fn($group) => [
                     'url' => 'timetable/groups/' . $group->id,
-                    'value' => $group->getDescription()
+                    'value' => $group->getDescription(),
+                    'type' => 'group',
                 ])
                 ->toArray();
             $results = $results->merge($groups);
         }
         if ($shouldFetchConductors) {
-            $conductors = Conductor::where(DB::raw('LOWER(name)'), 'like', '%' . $search . '%')
-                ->orWhere(DB::raw('LOWER(surname)'), 'like', '%' . $search . '%')
+            $conductors = Conductor::query()
+                ->where(function (Builder $query) use ($searchPattern) {
+                    $query
+                        ->whereLike('name', $searchPattern, caseSensitive: false)
+                        ->orWhereLike('surname', $searchPattern, caseSensitive: false)
+                        ->orWhereLike('shortcut', $searchPattern, caseSensitive: false)
+                        ->orWhereLike('title', $searchPattern, caseSensitive: false)
+                        ->orWhereLike('room', $searchPattern, caseSensitive: false)
+                        ->orWhereHas('tree', fn(Builder $tree) => $this->whereTreeMatches(
+                            $tree,
+                            $searchPattern
+                        ));
+                })
                 ->orderBy('surname')
                 ->get()
                 ->map(fn($conductor) => [
                     'url' => 'timetable/conductors/' . $conductor->id,
-                    'value' => $conductor->getDescription()
+                    'value' => $conductor->getDescription(),
+                    'type' => 'conductor',
                 ])
                 ->toArray();
             $results = $results->merge($conductors);
         }
         if ($shouldFetchRooms) {
-            $rooms = Room::where(DB::raw('LOWER(nr_room)'), 'like', '%' . $search . '%')
+            $rooms = Room::query()
+                ->where(function (Builder $query) use ($searchPattern) {
+                    $query
+                        ->whereLike('nr_room', $searchPattern, caseSensitive: false)
+                        ->orWhereHas('tree', fn(Builder $tree) => $this->whereTreeMatches(
+                            $tree,
+                            $searchPattern
+                        ));
+                })
                 ->orderBy('nr_room')
                 ->get()
                 ->map(fn($room) => [
                     'url' => 'timetable/rooms/' . $room->nr_room,
-                    'value' => $room->getDescription()
+                    'value' => $room->getDescription(),
+                    'type' => 'room',
                 ])
                 ->toArray();
             $results = $results->merge($rooms);
@@ -78,5 +111,27 @@ class SearchController extends Controller
         );
 
         return view('search', ['results' => $paginator, 'search' => $search]);
+    }
+
+    private function whereTreeMatches(Builder $tree, string $searchPattern): void
+    {
+        $tree
+            ->whereLike('name', $searchPattern, caseSensitive: false)
+            ->orWhereHas('parent', function (Builder $parent) use ($searchPattern) {
+                $parent
+                    ->whereLike('name', $searchPattern, caseSensitive: false)
+                    ->orWhereHas('parent', function (Builder $grandparent) use ($searchPattern) {
+                        $grandparent
+                            ->whereLike('name', $searchPattern, caseSensitive: false)
+                            ->orWhereHas(
+                                'parent',
+                                fn(Builder $ancestor) => $ancestor->whereLike(
+                                    'name',
+                                    $searchPattern,
+                                    caseSensitive: false
+                                )
+                            );
+                    });
+            });
     }
 }

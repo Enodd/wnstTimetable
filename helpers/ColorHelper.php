@@ -17,13 +17,14 @@ class ColorHelper
     private const float DARKER_END_APPROXIMATION = 0.85;
     private const float WCAG_OFFSET = 0.05;
 
-    static public function powerLawCurve(float $color): float {
+    public static function powerLawCurve(float $color): float|int|object
+    {
         return pow(($color + self::OFFSET) / self::NORMALIZATION, self::GAMMA_EXPONENT);
     }
 
-    static public function relativeLuminance(int $red, int $green, int $blue): float
+    public static function relativeLuminance(int $red, int $green, int $blue): float
     {
-        $y = array_map(function($color) {
+        $y = array_map(function ($color) {
             $x = $color / 255;
             return $x <= self::BREAKPOINT
                 ? $x / self::SLOPE
@@ -32,7 +33,8 @@ class ColorHelper
 
         return self::LUMINANCE_RED * $y[0] + self::LUMINANCE_GREEN * $y[1] + self::LUMINANCE_BLUE * $y[2];
     }
-    static public function contrastColor(string $hex): string {
+    public static function contrastColor(string $hex): string
+    {
         [$red, $green, $blue] = sscanf($hex, "%02X%02X%02X");
 
         $baseLuminance = self::relativeLuminance($red, $green, $blue);
@@ -45,16 +47,11 @@ class ColorHelper
         $contrastWithDark = ($luminance + self::WCAG_OFFSET) / self::WCAG_OFFSET;
         $contrastWithWhite = (1 + self::WCAG_OFFSET) / ($luminance + self::WCAG_OFFSET);
 
-        error_log("hex: $hex | R:$red G:$green B:$blue");
-        error_log("baseLum: $baseLuminance | darkLum: $darkLuminance | worstCase: $luminance");
-        error_log("contrastWhite: $contrastWithWhite | contrastDark: $contrastWithDark");
-        error_log("result: " . ($contrastWithWhite > $contrastWithDark ? 'WHITE' : 'DARK'));
-        error_log("============");
-
         return $contrastWithWhite > $contrastWithDark ? "#ffffff" : "#1a1a2e";
     }
 
-    static public function extractHsl(string $hsl): array {
+    public static function extractHsl(string $hsl): array
+    {
         preg_match('/hsl\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*\)/', $hsl, $matches);
 
         return [
@@ -64,7 +61,7 @@ class ColorHelper
         ];
     }
 
-    static public function hslToHex(float $hue, float $saturation, float $lightness): string
+    public static function hslToHex(float $hue, float $saturation, float $lightness): string
     {
         $saturation /= 100;
         $lightness  /= 100;
@@ -73,7 +70,7 @@ class ColorHelper
         $huePrime = $hue / 60;
         $x        = $chroma * (1 - abs(fmod($huePrime, 2) - 1));
 
-        [$r, $g, $b] = match(true) {
+        [$r, $g, $b] = match (true) {
             $huePrime < 1 => [$chroma, $x,      0],
             $huePrime < 2 => [$x,      $chroma, 0],
             $huePrime < 3 => [0,       $chroma, $x],
@@ -84,7 +81,8 @@ class ColorHelper
 
         $m = $lightness - $chroma / 2;
 
-        return sprintf('%02X%02X%02X',
+        return sprintf(
+            '%02X%02X%02X',
             (int)(($r + $m) * 255),
             (int)(($g + $m) * 255),
             (int)(($b + $m) * 255),
@@ -95,7 +93,7 @@ class ColorHelper
      * @param int $bgr a color value set as bgr number
      * @return string converted value into rgb hex string without "#"
      */
-    static public function bgrIntToHex(int $bgr): string
+    public static function bgrIntToHex(int $bgr): string
     {
         $blue = ($bgr >> 16) & 0xFF;
         $green = ($bgr >> 8) & 0xFF;
@@ -105,7 +103,8 @@ class ColorHelper
     }
 
 
-    static public function generateGradient(int|string $color): string
+    // Currently not in use. One day will be propably useful
+    public static function generateGradient(int|string $color): string
     {
         $hex = is_int($color) ? self::bgrIntToHex($color) : $color;
 

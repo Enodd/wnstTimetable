@@ -4,10 +4,12 @@ namespace App\Models;
 
 class WeekWeekDef extends generated\Weekweekdef
 {
-    public function weekDef() {
+    public function weekDef()
+    {
         return $this->hasMany(WeekDef::class, 'idWeekDef', 'idWeekDef');
     }
-    public function week() {
+    public function week()
+    {
         return $this->hasMany(Week::class, 'idWeek', 'idWeek');
     }
 }

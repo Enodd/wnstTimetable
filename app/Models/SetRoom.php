@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SetRoom extends generated\SetRoom
@@ -20,5 +21,10 @@ class SetRoom extends generated\SetRoom
     public function time(): HasOne
     {
         return $this->hasOne(Time::class, 'idEvent', 'id');
+    }
+
+    public function times(): HasMany
+    {
+        return $this->hasMany(Time::class, 'idEvent', 'id');
     }
 }

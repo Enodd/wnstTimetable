@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ConductorTree extends CondTree
 {
-
     public function conductors(): HasMany
     {
         return $this
@@ -45,5 +44,4 @@ class ConductorTree extends CondTree
             'children' => $this->children->map->toNestedArray()->toArray(),
         ];
     }
-
 }

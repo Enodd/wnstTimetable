@@ -1,0 +1,544 @@
+@layer components {
+    .timetable {
+        @apply mx-auto flex w-full max-w-[1800px] flex-col gap-5;
+    }
+
+    .timetable-panel {
+        @apply rounded-2xl border p-3 sm:px-4;
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark);
+        box-shadow: 0 25px 50px -12px var(--theme-shadow);
+
+        &.timetable-panel--floating {
+            @apply relative z-30;
+        }
+    }
+
+    .timetable-kicker {
+        @apply mb-2 border-b pb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.16em];
+        color: var(--theme-grid-muted);
+        border-color: var(--theme-grid-line);
+    }
+
+    .timetable-heading-row {
+        @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+
+        &.timetable-heading-row--agenda {
+            @apply lg:flex-row lg:items-end lg:justify-between;
+        }
+    }
+
+    .timetable-header-badges {
+        @apply flex min-w-0 flex-wrap items-center gap-2;
+    }
+
+    .timetable-header-badge {
+        @apply inline-flex min-h-8 max-w-full items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold;
+        color: var(--theme-grid-muted);
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        svg {
+            @apply size-3.5 shrink-0;
+        }
+
+        &.timetable-header-badge--subject {
+            color: var(--theme-grid-day-heading);
+            border-left: 2px solid var(--theme-accent);
+        }
+    }
+
+    .timetable-heading-copy {
+        @apply border-l-2 pl-3;
+        border-color: var(--theme-accent);
+    }
+
+    .timetable-heading-actions {
+        @apply flex items-center justify-end gap-2;
+    }
+
+    .timetable-favorite-control {
+        @apply relative;
+    }
+
+    .timetable-favorite-toggle {
+        @apply flex size-10 items-center justify-center rounded-lg border transition;
+        color: var(--theme-grid-day-heading);
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        &:hover {
+            color: var(--theme-danger);
+            border-color: var(--theme-danger);
+            background-color: var(--theme-surface-dark-subtle);
+        }
+
+        &:focus-visible {
+            border-color: var(--theme-focus);
+            box-shadow: 0 0 0 3px var(--theme-focus-soft);
+            outline: none;
+        }
+    }
+
+    .timetable-favorite-icon {
+        @apply size-5 transition;
+
+        &.is-active {
+            color: var(--theme-danger);
+            fill: currentColor;
+        }
+    }
+
+    .timetable-favorite-notice {
+        @apply absolute right-0 top-full z-50 mt-2 w-72 rounded-lg border p-3 text-sm font-semibold;
+        color: var(--theme-danger-text);
+        border-color: var(--theme-danger-border);
+        background-color: var(--theme-danger-bg);
+        box-shadow: 0 10px 25px var(--theme-shadow);
+    }
+
+    .timetable-title {
+        @apply text-xl font-bold leading-tight tracking-tight sm:text-2xl;
+        color: var(--theme-grid-day-heading);
+    }
+
+    .timetable-subtitle {
+        @apply mt-2 flex w-fit items-center gap-1.5 rounded-md border px-2 py-1 text-xs font-medium;
+        color: var(--theme-grid-muted);
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        svg {
+            @apply size-3.5;
+        }
+    }
+
+    .timetable-header-action {
+        @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg border px-4 text-sm font-semibold transition;
+        color: var(--theme-grid-day-heading);
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        &:hover,
+        &.is-active {
+            color: var(--theme-text);
+            border-color: var(--theme-grid-hour-divider);
+            background-color: var(--theme-surface-dark-subtle);
+        }
+
+        &:focus-visible {
+            border-color: var(--theme-focus);
+            box-shadow: 0 0 0 3px var(--theme-focus-soft);
+            outline: none;
+        }
+    }
+
+    .timetable-filter-panel {
+        @apply absolute left-0 right-0 top-full z-40 mt-2 rounded-xl border p-4 sm:p-5;
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark);
+        box-shadow: 0 25px 50px -12px var(--theme-shadow);
+    }
+
+    .timetable-filter-form {
+        @apply mt-5 grid gap-3 border-t pt-5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-end;
+        border-color: var(--theme-grid-line);
+
+        .form-label-text {
+            color: var(--theme-grid-muted);
+        }
+
+        .form-control {
+            color: var(--theme-grid-day-heading);
+            border-color: var(--theme-grid-line);
+            background-color: var(--theme-surface-dark-muted);
+        }
+
+        .form-control-icon {
+            color: var(--theme-grid-muted);
+        }
+    }
+
+    .timetable-filter-submit {
+        @apply inline-flex h-10 items-center justify-center rounded-lg border px-4 text-sm font-bold transition;
+        color: var(--theme-primary-text);
+        border-color: var(--theme-primary);
+        background-color: var(--theme-primary);
+
+        &:hover {
+            border-color: var(--theme-primary-hover);
+            background-color: var(--theme-primary-hover);
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 3px var(--theme-focus-soft);
+            outline: none;
+        }
+    }
+
+    .day-switcher {
+        @apply flex max-w-full gap-1 overflow-x-auto rounded-lg border p-1;
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        &.day-switcher--filters {
+            @apply flex-col md:w-fit md:flex-row;
+        }
+    }
+
+    .day-switcher-button {
+        @apply shrink-0 rounded-lg px-3 py-2 text-xs font-semibold transition;
+        color: var(--theme-grid-muted);
+
+        &:hover {
+            color: var(--theme-grid-day-heading);
+            background-color: var(--theme-surface-dark-subtle);
+        }
+
+        &.is-selected {
+            color: var(--theme-primary-text);
+            background-color: var(--theme-primary);
+            box-shadow: 0 1px 3px var(--theme-shadow-soft);
+        }
+    }
+
+    .agenda-grid {
+        @apply grid grid-cols-1 gap-4;
+
+        &.is-week {
+            @apply md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5;
+        }
+    }
+
+    .agenda-day {
+        @apply min-w-0 overflow-hidden rounded-2xl;
+        color: var(--theme-card-text);
+        background-color: var(--theme-surface-solid);
+        box-shadow: 0 20px 25px -5px var(--theme-shadow-soft);
+    }
+
+    .agenda-day-header {
+        @apply flex items-center justify-between border-b px-4 py-3;
+        border-color: var(--theme-border-on-light);
+    }
+
+    .agenda-day-title {
+        @apply font-semibold;
+        color: var(--theme-agenda-heading);
+    }
+
+    .agenda-count,
+    .agenda-badge {
+        @apply rounded-full font-bold;
+        color: var(--theme-agenda-badge-text);
+        background-color: var(--theme-agenda-badge-bg);
+    }
+
+    .agenda-count {
+        @apply px-2 py-1 text-[0.6875rem];
+        background-color: var(--theme-agenda-count-bg);
+    }
+
+    .agenda-events {
+        @apply space-y-3 p-3;
+    }
+
+    .agenda-event {
+        @apply relative overflow-hidden rounded-xl border p-3 pl-4 transition;
+        border-color: var(--theme-border-on-light);
+        background-color: var(--theme-surface-raised);
+
+        &:hover {
+            @apply -translate-y-0.5 shadow-md;
+            border-color: var(--theme-border-on-light-hover);
+        }
+    }
+
+    .agenda-event-accent {
+        @apply absolute inset-y-0 left-0 w-1;
+        background-color: var(--event-accent, var(--theme-accent));
+    }
+
+    .agenda-event-meta {
+        @apply mb-2 flex flex-wrap items-center justify-between gap-2;
+    }
+
+    .agenda-event-time {
+        @apply font-mono text-xs font-bold;
+        color: var(--theme-agenda-heading);
+    }
+
+    .agenda-badges {
+        @apply flex flex-wrap gap-1;
+    }
+
+    .agenda-badge {
+        @apply px-2 py-0.5 text-[0.625rem];
+
+        &.agenda-badge--muted {
+            @apply font-semibold;
+            color: var(--theme-card-muted);
+            background-color: var(--theme-agenda-muted-bg);
+        }
+    }
+
+    .agenda-event-title {
+        @apply text-sm font-bold leading-snug;
+    }
+
+    .agenda-event-name {
+        @apply mt-1 text-xs leading-relaxed;
+        color: var(--theme-card-muted);
+    }
+
+    .agenda-event-type {
+        @apply mt-2 text-[0.6875rem] font-medium uppercase tracking-wide;
+        color: var(--theme-card-subtle);
+    }
+
+    .agenda-empty {
+        @apply rounded-xl border border-dashed px-4 py-10 text-center;
+        border-color: var(--theme-border-on-light);
+    }
+
+    .agenda-empty-text {
+        @apply text-sm font-medium;
+        color: var(--theme-card-subtle);
+    }
+
+    .timetable-table-wrap {
+        @apply overflow-x-auto rounded-2xl border;
+        border-color: var(--theme-grid-line);
+        box-shadow: 0 25px 50px -12px var(--theme-shadow);
+    }
+
+    .timetable-table {
+        @apply w-full table-fixed text-sm;
+    }
+
+    .timetable-hour-column {
+        width: 3.75rem;
+    }
+
+    .timetable-event-column {
+        width: 176px;
+    }
+
+    .timetable-table-header,
+    .timetable-hour-heading,
+    .timetable-day-heading,
+    .timetable-group-heading,
+    .timetable-slot-row.is-hour-start,
+    .timetable-hour-cell,
+    .timetable-event-cell,
+    .timetable-event-stack.has-overlap,
+    .timetable-empty-cell {
+        border-color: var(--theme-grid-line);
+    }
+
+    .timetable-table-header {
+        @apply border-b;
+        background-color: var(--theme-surface-dark);
+    }
+
+    .timetable-hour-heading {
+        @apply border-r px-3 py-3 text-left font-medium;
+        color: var(--theme-grid-hour-heading);
+    }
+
+    .timetable-day-heading {
+        @apply border-r px-2 py-2 text-center font-semibold tracking-wide last:border-r-0;
+        color: var(--theme-grid-day-heading);
+    }
+
+    .timetable-group-heading {
+        @apply border-r px-1 py-1 text-center text-xs font-normal last:border-r-0;
+        color: var(--theme-grid-muted);
+    }
+
+    .timetable-slot-row {
+        @apply h-4;
+
+        > td {
+            border-top: 1px solid var(--theme-grid-quarter-divider);
+        }
+
+        &.is-hour-start {
+            > td {
+                border-top: 2px solid var(--theme-grid-hour-divider);
+            }
+        }
+    }
+
+    .timetable-hour-cell {
+        @apply whitespace-nowrap border-r px-2 py-0 text-center align-middle text-xs font-medium leading-tight;
+        color: var(--theme-grid-muted);
+        background-color: var(--theme-surface-dark-muted);
+
+        &.timetable-hour-cell--day {
+            @apply max-w-6;
+        }
+    }
+
+    .timetable-hour-separator {
+        color: var(--theme-grid-subtle);
+    }
+
+    .timetable-event-cell {
+        @apply relative border-r p-0 align-top last:border-r-0;
+    }
+
+    .timetable-event-stack {
+        @apply absolute inset-0 grid;
+
+        &.has-overlap {
+            @apply grid-rows-2 divide-y;
+        }
+    }
+
+    .timetable-event {
+        @apply relative overflow-hidden border-l-2 p-1 text-left;
+        border-left-color: var(--event-accent, var(--theme-accent));
+
+        &:hover,
+        &:focus-visible {
+            @apply absolute inset-x-0 z-40 h-max overflow-visible p-2;
+            top: 0;
+            min-height: 100%;
+            background-color: var(--theme-surface-dark);
+            box-shadow: 0 20px 35px -12px var(--theme-shadow);
+            outline: 2px solid var(--theme-border-strong);
+            outline-offset: -2px;
+        }
+    }
+
+    .timetable-event-stack.has-overlap {
+        .timetable-event:hover,
+        .timetable-event:focus-visible {
+            min-height: 50%;
+        }
+
+        .timetable-event:nth-child(2):hover,
+        .timetable-event:nth-child(2):focus-visible {
+            top: 50%;
+        }
+    }
+
+    .timetable-event-shortcut {
+        @apply text-[0.8125rem] font-bold leading-tight;
+    }
+
+    .timetable-event-parity {
+        @apply text-[0.6875rem] font-normal opacity-70;
+    }
+
+    .timetable-event-name {
+        @apply mt-0.5 text-xs leading-snug opacity-90;
+    }
+
+    .timetable-event-type {
+        @apply mt-0.5 text-[0.6875rem] italic opacity-60;
+    }
+
+    .timetable-event-detail {
+        @apply mt-1 text-[0.6875rem] font-medium leading-snug;
+        color: var(--theme-text-muted);
+    }
+
+    .timetable-event-room {
+        @apply mt-1 text-[0.6875rem] font-semibold leading-snug;
+        color: var(--theme-location-text);
+    }
+
+    .timetable-location-legend {
+        @apply overflow-hidden rounded-2xl border;
+        background-color: var(--theme-surface-dark);
+        border-color: var(--theme-grid-line);
+        color: var(--theme-grid-day-heading);
+        box-shadow: 0 25px 50px -12px var(--theme-shadow);
+    }
+
+    .timetable-location-legend-heading {
+        @apply flex w-full items-center gap-3 px-4 py-3 text-left transition sm:px-5;
+        border-color: var(--theme-grid-line);
+
+        &:hover {
+            background-color: var(--theme-surface-dark-subtle);
+        }
+
+        &:focus-visible {
+            box-shadow: inset 0 0 0 2px var(--theme-focus);
+            outline: none;
+        }
+    }
+
+    .timetable-location-legend-icon {
+        @apply flex size-9 shrink-0 items-center justify-center rounded-lg border;
+        color: var(--theme-accent);
+        border-color: var(--theme-grid-line);
+        background-color: var(--theme-surface-dark-muted);
+
+        svg {
+            @apply size-5;
+        }
+    }
+
+    .timetable-location-legend-title {
+        @apply block text-sm font-bold;
+    }
+
+    .timetable-location-legend-copy {
+        @apply block;
+    }
+
+    .timetable-location-legend-subtitle {
+        @apply mt-0.5 block text-xs;
+        color: var(--theme-grid-muted);
+    }
+
+    .timetable-location-legend-chevron {
+        @apply ml-auto size-5 shrink-0 transition-transform;
+        color: var(--theme-grid-muted);
+
+        &.is-open {
+            @apply rotate-180;
+        }
+    }
+
+    .timetable-location-legend-list {
+        @apply divide-y border-t;
+        border-color: var(--theme-grid-line);
+    }
+
+    .timetable-location-legend-item {
+        @apply grid gap-1 px-4 py-3 text-xs sm:grid-cols-[minmax(8rem,auto)_1fr] sm:items-baseline sm:gap-4 sm:px-5;
+        border-color: var(--theme-grid-line);
+
+        &:hover {
+            background-color: var(--theme-surface-dark-subtle);
+        }
+    }
+
+    .timetable-location-legend-room {
+        @apply w-fit border-l-2 pl-2 font-bold;
+        color: var(--theme-grid-day-heading);
+        border-color: var(--theme-accent);
+    }
+
+    .timetable-location-legend-address {
+        color: var(--theme-grid-muted);
+    }
+
+    .timetable-empty-cell {
+        @apply border-r last:border-r-0;
+        background-color: var(--theme-surface-dark-subtle);
+    }
+
+    .theme-high-contrast {
+        .agenda-event,
+        .timetable-event {
+            outline: 2px solid var(--theme-border-strong);
+            outline-offset: -2px;
+        }
+    }
+}

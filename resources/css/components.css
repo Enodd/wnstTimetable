@@ -1,0 +1,127 @@
+@layer components {
+    /* Layout */
+    .app-shell { @apply flex; }
+
+    .app-main {
+        @apply flex max-h-full w-full flex-col items-center justify-center overflow-y-scroll p-4;
+    }
+
+    .visually-hidden { @apply sr-only; }
+
+    /* Buttons */
+    .button {
+        @apply inline-flex items-center justify-center rounded-lg font-bold shadow transition;
+        color: var(--theme-primary-text);
+        background-color: var(--theme-primary);
+
+        &:hover {
+            color: var(--theme-primary-text);
+            background-color: var(--theme-primary-hover);
+            text-decoration: none;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 4px var(--theme-focus-soft);
+        }
+
+        &.button--control { @apply h-10 gap-2 px-4 text-sm; }
+        &.button--compact { @apply px-3 py-1 text-sm; }
+
+        &.button--outline {
+            @apply border px-4 py-2 shadow-none;
+            color: var(--theme-text);
+            border-color: var(--theme-outline-border);
+            background-color: transparent;
+
+            &:hover {
+                color: var(--theme-outline-hover-text);
+                background-color: var(--theme-outline-hover);
+            }
+        }
+
+        &.button--accent {
+            color: var(--theme-text);
+            background-color: var(--theme-accent);
+
+            &:hover {
+                color: var(--theme-text);
+                background-color: var(--theme-accent-hover);
+            }
+        }
+    }
+
+    .button-icon { @apply size-4 transition-transform; }
+    .is-rotated { @apply rotate-90; }
+
+    /* Form controls */
+    .form-label {
+        @apply flex flex-col gap-1.5;
+
+        .form-label-text {
+            @apply text-xs font-semibold uppercase tracking-wide;
+            color: var(--theme-text-muted);
+        }
+    }
+
+    .form-control-wrap {
+        @apply relative block;
+
+        .form-control {
+            @apply h-10 w-full appearance-none rounded-lg border pl-3 pr-10 text-sm outline-none transition;
+            color: var(--theme-text);
+            border-color: var(--theme-border);
+            background-color: var(--theme-surface-control);
+
+            &:hover,
+            &:focus {
+                border-color: var(--theme-focus);
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 3px var(--theme-focus-soft);
+            }
+        }
+
+        .form-control-icon {
+            @apply pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2;
+            color: var(--theme-text-muted);
+        }
+    }
+
+    .input-control {
+        @apply rounded border p-2;
+        color: var(--theme-text);
+        border-color: var(--theme-input-border);
+        background-color: var(--theme-surface-control);
+
+        &:focus { border-color: var(--theme-focus); }
+
+        &.input-control--search,
+        &.input-control--choice {
+            border-color: var(--theme-outline-border);
+        }
+
+        &.input-control--search { @apply w-full; }
+    }
+
+    .input-label--choice { @apply flex items-center gap-3; }
+
+    /* Small shared elements */
+    .card-header {
+        @apply w-fit rounded border p-1;
+        border-color: var(--theme-border-strong);
+
+        &.card-header--full { @apply w-full; }
+        &.card-header--sm { @apply text-sm; }
+        &.card-header--base { @apply text-base; }
+        &.card-header--lg { @apply text-lg; }
+        &.card-header--xl { @apply text-xl; }
+    }
+
+    .timetable-search-debug {
+        @apply my-4 border;
+        border-color: var(--theme-border-strong);
+    }
+
+    .conductor-name { @apply mt-0.5 text-base leading-snug; }
+}

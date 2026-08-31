@@ -1,4 +1,4 @@
-<div class="my-4 border-[1px] border-blue-100 ">
+<div class="timetable-search-debug">
     <x-cardHeader fullWidth>
         Filtry
     </x-cardHeader>

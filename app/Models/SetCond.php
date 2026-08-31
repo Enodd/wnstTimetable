@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SetCond extends generated\SetCond
@@ -20,5 +21,10 @@ class SetCond extends generated\SetCond
     public function time(): HasOne
     {
         return $this->hasOne(Time::class, 'idEvent', 'id');
+    }
+
+    public function times(): HasMany
+    {
+        return $this->hasMany(Time::class, 'idEvent', 'id');
     }
 }

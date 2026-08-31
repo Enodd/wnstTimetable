@@ -15,7 +15,8 @@ class RoomTree extends generated\RoomTree
     {
         return $this->belongsTo(RoomTree::class, 'parent', 'id_room_tree');
     }
-    public function children(): HasMany {
+    public function children(): HasMany
+    {
         return $this->hasMany(RoomTree::class, 'parent', 'id_room_tree')->orderBy('name');
     }
 

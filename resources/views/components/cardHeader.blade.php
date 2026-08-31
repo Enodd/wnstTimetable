@@ -3,7 +3,7 @@
     'size' => 'lg'
 ])
 
-<div class="text-{{$size}} border-[1px] p-1 border-blue-100 {{$fullWidth ? 'w-full' : 'w-fit'}} rounded">
+<div class="card-header card-header--{{$size}} {{$fullWidth ? 'card-header--full' : ''}}">
     <p>
         {!! $slot !!}
     </p>

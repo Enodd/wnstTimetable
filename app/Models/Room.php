@@ -18,4 +18,28 @@ class Room extends generated\Room
     {
         return $this->nr_room;
     }
+
+    public function getLocationLabel(): ?string
+    {
+        $segments = [];
+        $node = $this->tree;
+
+        for ($level = 0; $level < 3 && $node !== null; $level++) {
+            $name = trim((string) $node->name);
+
+            if ($name !== '') {
+                array_unshift($segments, $name);
+            }
+
+            $node = $node->relationLoaded('parent')
+                ? $node->getRelation('parent')
+                : null;
+        }
+
+        $location = collect($segments)
+            ->unique()
+            ->implode(' / ');
+
+        return $location !== '' ? $location : null;
+    }
 }

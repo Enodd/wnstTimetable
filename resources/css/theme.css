@@ -1,0 +1,282 @@
+@theme {
+    --font-sans:
+        "Mulish", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --color-plan-info: #0d1b4c;
+}
+
+:root {
+    color-scheme: dark;
+
+    --theme-page-start: var(--color-blue-900);
+    --theme-page-end: var(--color-blue-950);
+    --theme-text: var(--color-white);
+    --theme-text-muted: color-mix(
+        in oklab,
+        var(--color-white) 60%,
+        transparent
+    );
+    --theme-text-subtle: color-mix(
+        in oklab,
+        var(--color-white) 40%,
+        transparent
+    );
+    --theme-text-on-light: var(--color-blue-950);
+    --theme-content-text: color-mix(
+        in oklab,
+        var(--color-white) 80%,
+        transparent
+    );
+    --theme-plan-info-bg: var(--color-plan-info);
+    --theme-plan-row-bg: color-mix(
+        in oklab,
+        var(--color-white) 5%,
+        transparent
+    );
+
+    --theme-surface: color-mix(in oklab, var(--color-white) 10%, transparent);
+    --theme-surface-solid: var(--color-white);
+    --theme-surface-raised: var(--color-slate-50);
+    --theme-surface-dark: var(--color-gray-900);
+    --theme-surface-dark-muted: color-mix(
+        in oklab,
+        var(--color-gray-900) 60%,
+        transparent
+    );
+    --theme-surface-dark-subtle: color-mix(
+        in oklab,
+        var(--color-gray-900) 30%,
+        transparent
+    );
+    --theme-surface-control: color-mix(
+        in oklab,
+        var(--color-blue-950) 70%,
+        transparent
+    );
+    --theme-surface-hover-soft: color-mix(
+        in oklab,
+        var(--color-white) 10%,
+        transparent
+    );
+    --theme-surface-disabled: var(--color-gray-100);
+
+    --theme-border: color-mix(in oklab, var(--color-white) 15%, transparent);
+    --theme-border-soft: color-mix(
+        in oklab,
+        var(--color-white) 10%,
+        transparent
+    );
+    --theme-border-strong: var(--color-blue-100);
+    --theme-input-border: var(--color-blue-200);
+    --theme-outline-border: var(--color-blue-50);
+    --theme-outline-hover: transparent;
+    --theme-outline-hover-text: var(--color-white);
+    --theme-border-on-light: var(--color-slate-200);
+    --theme-border-on-light-hover: var(--color-slate-300);
+
+    --theme-primary: var(--color-white);
+    --theme-primary-text: var(--color-blue-950);
+    --theme-primary-hover: var(--color-blue-50);
+    --theme-accent: var(--color-blue-500);
+    --theme-accent-hover: var(--color-blue-600);
+    --theme-accent-soft: var(--color-blue-100);
+    --theme-focus: var(--color-blue-300);
+    --theme-focus-soft: color-mix(
+        in oklab,
+        var(--color-blue-300) 30%,
+        transparent
+    );
+    --theme-link: var(--color-blue-300);
+    --theme-filter-button-hover: var(--color-blue-900);
+    --theme-pagination-boundary-text: var(--color-black);
+    --theme-pagination-hover: var(--color-blue-200);
+    --theme-pagination-hover-text: var(--color-black);
+
+    --theme-kicker: color-mix(in oklab, var(--color-blue-200) 70%, transparent);
+    --theme-subtitle: color-mix(in oklab, var(--color-white) 55%, transparent);
+    --theme-switcher-text: color-mix(
+        in oklab,
+        var(--color-white) 70%,
+        transparent
+    );
+
+    --theme-card-text: var(--color-slate-900);
+    --theme-card-muted: var(--color-slate-600);
+    --theme-card-subtle: var(--color-slate-400);
+    --theme-agenda-heading: var(--color-blue-950);
+    --theme-agenda-badge-text: var(--color-blue-900);
+    --theme-agenda-count-bg: var(--color-blue-50);
+    --theme-agenda-badge-bg: var(--color-blue-100);
+    --theme-agenda-muted-bg: var(--color-slate-200);
+
+    --theme-grid-hour-heading: var(--color-gray-500);
+    --theme-grid-day-heading: var(--color-gray-200);
+    --theme-grid-muted: var(--color-gray-400);
+    --theme-grid-subtle: var(--color-gray-600);
+    --theme-grid-line: color-mix(in oklab, var(--color-white) 20%, transparent);
+    --theme-grid-quarter-divider: color-mix(
+        in oklab,
+        var(--color-white) 12%,
+        transparent
+    );
+    --theme-grid-hour-divider: color-mix(
+        in oklab,
+        var(--color-white) 35%,
+        transparent
+    );
+    --theme-location-text: var(--color-blue-50);
+
+    --theme-sidebar-muted: var(--color-gray-400);
+    --theme-sidebar-hover: var(--theme-surface-dark-subtle);
+    --theme-sidebar-tab-idle: color-mix(
+        in oklab,
+        var(--color-black) 18%,
+        var(--theme-page-end)
+    );
+    --theme-sidebar-tab-hover: color-mix(
+        in oklab,
+        var(--color-black) 10%,
+        var(--theme-page-end)
+    );
+    --theme-sidebar-tree-border: var(--theme-grid-line);
+    --theme-current-hour-bg: color-mix(
+        in oklab,
+        var(--color-white) 20%,
+        transparent
+    );
+    --theme-accessibility-bg: var(--theme-surface-dark);
+    --theme-accessibility-text: var(--theme-grid-day-heading);
+    --theme-accessibility-border: var(--theme-grid-line);
+    --theme-accessibility-button-bg: var(--theme-surface-dark-muted);
+    --theme-accessibility-button-hover: var(--theme-surface-dark-subtle);
+    --theme-accessibility-active-bg: var(--theme-primary);
+    --theme-accessibility-active-text: var(--theme-primary-text);
+    --theme-accessibility-muted: var(--theme-grid-muted);
+
+    --theme-danger: var(--color-red-500);
+    --theme-danger-bg: color-mix(
+        in oklab,
+        var(--color-red-500) 10%,
+        transparent
+    );
+    --theme-danger-border: var(--color-red-800);
+    --theme-danger-text: var(--color-red-200);
+    --theme-disabled-text: var(--color-gray-400);
+    --theme-scrollbar-track: var(--color-blue-950);
+    --theme-scrollbar-thumb: var(--color-blue-100);
+    --theme-scrollbar-firefox: var(--color-blue-500);
+    --theme-overlay: color-mix(in oklab, var(--color-black) 60%, transparent);
+    --theme-shadow: color-mix(in oklab, var(--color-black) 40%, transparent);
+    --theme-shadow-soft: color-mix(
+        in oklab,
+        var(--color-black) 20%,
+        transparent
+    );
+    --theme-checkbox: var(--color-white);
+}
+
+:root.theme-high-contrast,
+.theme-high-contrast,
+[data-theme="high-contrast"] {
+    --theme-page-start: var(--color-black);
+    --theme-page-end: var(--color-black);
+    --theme-text: var(--color-white);
+    --theme-text-muted: var(--color-white);
+    --theme-text-subtle: var(--color-white);
+    --theme-text-on-light: var(--color-white);
+    --theme-content-text: var(--color-white);
+    --theme-plan-info-bg: var(--color-black);
+    --theme-plan-row-bg: var(--color-black);
+
+    --theme-surface: var(--color-black);
+    --theme-surface-solid: var(--color-black);
+    --theme-surface-raised: var(--color-black);
+    --theme-surface-dark: var(--color-black);
+    --theme-surface-dark-muted: var(--color-black);
+    --theme-surface-dark-subtle: var(--color-black);
+    --theme-surface-control: var(--color-black);
+    --theme-surface-hover-soft: var(--color-yellow-950);
+    --theme-surface-disabled: var(--color-neutral-800);
+
+    --theme-border: var(--color-white);
+    --theme-border-soft: var(--color-white);
+    --theme-border-strong: var(--color-white);
+    --theme-input-border: var(--color-white);
+    --theme-outline-border: var(--color-white);
+    --theme-outline-hover: var(--color-yellow-300);
+    --theme-outline-hover-text: var(--color-black);
+    --theme-border-on-light: var(--color-white);
+    --theme-border-on-light-hover: var(--color-yellow-300);
+
+    --theme-primary: var(--color-yellow-300);
+    --theme-primary-text: var(--color-black);
+    --theme-primary-hover: var(--color-white);
+    --theme-accent: var(--color-cyan-300);
+    --theme-accent-hover: var(--color-yellow-300);
+    --theme-accent-soft: var(--color-cyan-950);
+    --theme-focus: var(--color-yellow-300);
+    --theme-focus-soft: color-mix(
+        in oklab,
+        var(--color-yellow-300) 45%,
+        transparent
+    );
+    --theme-link: var(--color-cyan-300);
+    --theme-filter-button-hover: var(--color-yellow-950);
+    --theme-pagination-boundary-text: var(--color-white);
+    --theme-pagination-hover: var(--color-yellow-300);
+    --theme-pagination-hover-text: var(--color-black);
+
+    --theme-kicker: var(--color-cyan-300);
+    --theme-subtitle: var(--color-white);
+    --theme-switcher-text: var(--color-white);
+
+    --theme-card-text: var(--color-white);
+    --theme-card-muted: var(--color-white);
+    --theme-card-subtle: var(--color-white);
+    --theme-agenda-heading: var(--color-white);
+    --theme-agenda-badge-text: var(--color-white);
+    --theme-agenda-count-bg: var(--color-cyan-950);
+    --theme-agenda-badge-bg: var(--color-cyan-950);
+    --theme-agenda-muted-bg: var(--color-neutral-900);
+
+    --theme-grid-hour-heading: var(--color-white);
+    --theme-grid-day-heading: var(--color-white);
+    --theme-grid-muted: var(--color-white);
+    --theme-grid-subtle: var(--color-white);
+    --theme-grid-line: var(--color-white);
+    --theme-grid-quarter-divider: var(--color-white);
+    --theme-grid-hour-divider: var(--color-yellow-300);
+    --theme-location-text: var(--color-yellow-300);
+
+    --theme-sidebar-muted: var(--color-white);
+    --theme-sidebar-hover: var(--color-neutral-900);
+    --theme-sidebar-tab-idle: var(--color-black);
+    --theme-sidebar-tab-hover: var(--color-yellow-950);
+    --theme-sidebar-tree-border: var(--color-white);
+    --theme-current-hour-bg: var(--color-yellow-950);
+    --theme-accessibility-bg: var(--color-black);
+    --theme-accessibility-text: var(--color-white);
+    --theme-accessibility-border: var(--color-white);
+    --theme-accessibility-button-bg: var(--color-black);
+    --theme-accessibility-button-hover: var(--color-yellow-950);
+    --theme-accessibility-active-bg: var(--color-yellow-300);
+    --theme-accessibility-active-text: var(--color-black);
+    --theme-accessibility-muted: var(--color-white);
+
+    --theme-danger: var(--color-red-300);
+    --theme-danger-bg: var(--color-red-950);
+    --theme-danger-border: var(--color-red-300);
+    --theme-danger-text: var(--color-white);
+    --theme-disabled-text: var(--color-neutral-300);
+    --theme-scrollbar-track: var(--color-black);
+    --theme-scrollbar-thumb: var(--color-yellow-300);
+    --theme-scrollbar-firefox: var(--color-yellow-300);
+    --theme-overlay: color-mix(in oklab, var(--color-black) 85%, transparent);
+    --theme-shadow: color-mix(in oklab, var(--color-white) 45%, transparent);
+    --theme-shadow-soft: color-mix(
+        in oklab,
+        var(--color-white) 30%,
+        transparent
+    );
+    --theme-checkbox: var(--color-yellow-300);
+}

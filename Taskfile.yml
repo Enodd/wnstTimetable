@@ -1,0 +1,13 @@
+version: 3
+tasks:
+  default:
+    - task --list-all
+  lint:fix:all:
+    desc: Fixes all supported PHP files using the project coding standard
+    cmds:
+      - |
+        status=0
+        vendor/bin/phpcbf --standard=phpcs.xml || status=$?
+        if [ "$status" -gt 1 ]; then
+          exit "$status"
+        fi

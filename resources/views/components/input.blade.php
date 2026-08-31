@@ -19,7 +19,7 @@
     type="{{ $type }}"
     name="{{ $name }}"
     id="{{ $name }}"
-    class="border border-blue-200 {{ $inputClass }}"
+    class="input-control {{ $inputClass }}"
     @if($placeholder)
         placeholder="{{ $placeholder }}"
     @endif

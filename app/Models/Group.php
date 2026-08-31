@@ -9,7 +9,7 @@ class Group extends generated\Group
 {
     public function tree(): BelongsTo
     {
-        return $this->belongsTo(ConductorTree::class, 'id_group_tree');
+        return $this->belongsTo(GroupTree::class, 'id_group_tree');
     }
 
     public function setGroups(): HasMany

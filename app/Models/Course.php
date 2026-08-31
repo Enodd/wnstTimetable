@@ -31,6 +31,13 @@ class Course extends generated\Course
 
     public function room(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Room::class, 'set_rooms', 'id', 'id_room');
+        return $this->belongsToMany(Room::class, 'set_rooms', 'id', 'id_room')
+            ->withPivot(['dtLastModified', 'bIsDeleted'])
+            ->wherePivot('bIsDeleted', 0);
+    }
+
+    public function groups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Group::class, 'set_groups', 'id', 'id_group');
     }
 }

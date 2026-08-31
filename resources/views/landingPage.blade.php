@@ -1,12 +1,11 @@
 @props(['content'])
 
-@extends('layouts.app')
+@extends("layouts.app")
 
-<style>
-    table a {
-        color: var(--color-blue-400);
-    }
-</style>
 @section('content')
-    {!! $content !!}
+    <div class="content-frame">
+        <div class="plan-info">
+            {!! $content !!}
+        </div>
+    </div>
 @endsection
